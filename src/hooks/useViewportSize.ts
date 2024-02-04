@@ -1,5 +1,5 @@
 import { useWindowEvent } from "./useWindowEvent";
-import { useCallback, useState } from "react";
+import { useState } from "react";
 import { useThrottle } from "./useThrottle";
 
 export function useViewportSize() {
@@ -7,6 +7,7 @@ export function useViewportSize() {
     height: window.innerHeight,
     width: window.innerWidth
   });
+  const throttleValue = useThrottle(size, 300);
   const handlerResize = () => {
     setSize({
       height: window.innerHeight,
@@ -14,5 +15,5 @@ export function useViewportSize() {
     });
   }
   useWindowEvent("resize", handlerResize);
-  return size;
+  return throttleValue;
 }
