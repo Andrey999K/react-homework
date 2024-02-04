@@ -1,35 +1,12 @@
-import * as React from 'react'
-import {useFetch} from "../hooks/useFetch";
-import {DataItem} from "../types";
-import {useEffect} from "react";
+import * as React from "react"
+import { useViewportSize } from "./hooks/useViewportSize";
 
 export function App() {
-  const {
-    data,
-    isLoading,
-    error,
-    refetch
-  } = useFetch('https://jsonplaceholder.typicode.com/posts');
-
-  useEffect(() => {
-    console.log({ data });
-  }, [data]);
+  const { height, width } = useViewportSize();
 
   return (
-    <div>
-      <div>
-        <button onClick={() => refetch({
-          params: {
-            _limit: 3
-          }
-        })}>
-          Перезапросить
-        </button>
-      </div>
-      {isLoading && 'Загрузка...'}
-      {error && 'Произошла ошибка'}
-      {console.log(data)}
-      {data && !isLoading && data.map((item: DataItem) => <div key={item.id}>{item.title}</div>) }
-    </div>
+    <>
+      Width: {width}, height: {height}
+    </>
   );
 }
