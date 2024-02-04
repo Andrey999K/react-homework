@@ -1,5 +1,5 @@
 import { useWindowEvent } from "./useWindowEvent";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 interface Scrool {
   x?: number,
@@ -18,6 +18,10 @@ export function useWindowScroll(): [Scrool, ((coord: Scrool) => void)] {
   const scrollTo = (coord: Scrool) => {
     setScroll(prevState => ({ ...prevState, ...coord }))
   };
+
+  useEffect(() => {
+    window.scrollTo(scroll.x, scroll.y);
+  }, [scroll]);
 
   return [scroll, scrollTo];
 }
