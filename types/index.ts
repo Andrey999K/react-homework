@@ -18,3 +18,7 @@ export interface InputProps {
   description?: string;
   required?: boolean;
 }
+
+export type FormState = {
+  [field: string]: string
+}

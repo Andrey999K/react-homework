@@ -1,29 +1,22 @@
 import React, { FormEvent, useState } from "react";
 import { FormProps } from "../../../../types";
 import TextField from "../../common/TextField";
+import { useForm } from "../../../hooks/useForm";
+
+const initialState = {
+  name: "",
+  nickname: "",
+  email: "",
+  sex: "",
+  password: "",
+  repeatPassword: ""
+};
 
 const SignUp = ({ onSubmit }: FormProps) => {
-  const [form, setForm] = useState({
-    name: "",
-    nickname: "",
-    email: "",
-    sex: "",
-    password: "",
-    repeatPassword: ""
-  });
-
-  const handlerChange = ({ target }: FormEvent<HTMLFormElement>) => {
-    const { name, value } = target as HTMLInputElement;
-    setForm(prevState => ({ ...prevState, [name]: value }));
-  };
-
-  const handlerSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    onSubmit(form);
-  };
+  const { formElement, handlerChange, handlerSubmit } = useForm(initialState, onSubmit);
 
   return (
-    <form onSubmit={handlerSubmit} onChange={handlerChange} className="form">
+    <form ref={formElement} onSubmit={handlerSubmit} onChange={handlerChange} className="form">
       <TextField type="text" name="name" placeholder="name" label="Name" />
       <TextField type="text" name="nickname" placeholder="nickname" label="Nickname" />
       <TextField type="text" name="email" placeholder="email" label="Email" />
