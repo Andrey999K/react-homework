@@ -1,12 +1,13 @@
 import * as React from "react"
-import { useToggle } from "./hooks/useToggle";
+import SignIn from "./components/ui/SignIn";
+import { OnSubmit } from "../types";
 
 export function App() {
-  const [value, toggle] = useToggle(["blue", "orange", "cyan", "teal"]);
+  const handlerSubmit: OnSubmit = (data) => {
+    console.log(data);
+  };
 
   return (
-    <button onClick={() => toggle()}>
-      {value}
-    </button>
+    <SignIn onSubmit={handlerSubmit} />
   );
 }
