@@ -1,5 +1,6 @@
 import React, { FormEvent, useState } from "react";
 import { FormProps } from "../../../../types";
+import TextField from "../../common/TextField";
 
 const SignIn = ({ onSubmit }: FormProps) => {
   const [form, setForm] = useState({
@@ -19,8 +20,8 @@ const SignIn = ({ onSubmit }: FormProps) => {
 
   return (
     <form onSubmit={handlerSubmit} onChange={handlerChange} className="form">
-      <input type="email" name="email" required />
-      <input type="password" name="password" required />
+      <TextField type="email" name="email" placeholder="email" label="Email" />
+      <TextField type="password" name="password" placeholder="password" label="Password" />
       <button>Войти</button>
     </form>
   );
