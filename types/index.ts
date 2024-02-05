@@ -20,6 +20,8 @@ export interface InputProps {
   description?: string;
   radius?: number;
   styles?: React.CSSProperties;
+  rightIcon?: string;
+  leftIcon?: string;
   required?: boolean;
 }
 

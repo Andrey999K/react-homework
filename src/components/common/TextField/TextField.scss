@@ -1,7 +1,12 @@
+:root {
+  --gray: #868E96;
+}
+
 .label {
   display: flex;
   flex-direction: column;
   gap: 4px;
+  font-size: 14px;
 
   &__text {
     font-size: 14px;
@@ -10,19 +15,40 @@
 
   &__description {
     font-size: 12px;
-    color: #868E96;
+    color: var(--gray);
   }
 }
 
 .input {
-  border-radius: 5px;
-  padding: 10px;
-  border: 1px solid #c5c3c3;
   outline: none;
-  transition: 0.2s;
+  background: transparent;
+  border: none;
 
-  &:focus {
+  &-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-radius: 5px;
+    padding: 10px;
+    border: 1px solid #c5c3c3;
     transition: 0.2s;
-    border: 1px solid #228BE6;
+
+    span {
+      font-weight: 600;
+      color: var(--gray);;
+    }
+
+    &:hover {
+      cursor: text;
+    }
+
+    &:focus-within {
+      transition: 0.2s;
+      border: 1px solid #228BE6;
+    }
+  }
+
+  &__left-icon {
+    margin-left: auto;
   }
 }
