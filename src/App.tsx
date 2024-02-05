@@ -1,12 +1,15 @@
-import * as React from "react"
-import { useViewportSize } from "./hooks/useViewportSize";
+import * as React from "react";
+import { useWindowScroll } from "./hooks/useWindowScroll";
 
 export function App() {
-  const { height, width } = useViewportSize();
+  const [scroll, scrollTo] = useWindowScroll();
 
   return (
-    <>
-      Width: {width}, height: {height}
-    </>
+    <div className="scrool-data">
+      <p>
+        Scroll position x: {scroll.x}, y: {scroll.y}
+      </p>
+      <button onClick={() => scrollTo({ y: 0 })}>Scroll to top</button>
+    </div>
   );
 }
