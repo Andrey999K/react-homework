@@ -3,6 +3,9 @@ export interface DataItem {
   title: string
 }
 
-export interface OnSubmit {
-  (form: { [field: string]: string }): void;
+export type OnSubmit = (form: { [field: string]: string }) => void;
+
+
+export interface FormProps {
+  onSubmit: OnSubmit;
 }
