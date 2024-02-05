@@ -1,3 +1,5 @@
+import React from "react";
+
 export interface DataItem {
   id: number,
   title: string
@@ -16,6 +18,8 @@ export interface InputProps {
   placeholder?: string;
   label?: string;
   description?: string;
+  radius?: number;
+  styles?: React.CSSProperties;
   required?: boolean;
 }
 
