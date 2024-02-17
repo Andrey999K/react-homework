@@ -27,4 +27,8 @@ export interface InputProps {
 
 export type FormState = {
   [field: string]: string
-}
+};
+
+export type ObjectDefault = {
+  [id: string]: any
+};
