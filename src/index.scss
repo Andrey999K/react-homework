@@ -78,4 +78,18 @@ button {
       max-height: 50px;
     }
   }
+
+  &__name {
+    width: 100%;
+    max-width: 300px;
+  }
+
+  &__datetime {
+    width: 100%;
+    max-width: 300px;
+  }
+}
+
+.button-wrapper {
+  margin-bottom: 20px;
 }

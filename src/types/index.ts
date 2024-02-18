@@ -42,3 +42,5 @@ export type Character = {
   image: string;
   created: string;
 };
+
+export type DateTime = Date | number | bigint;
