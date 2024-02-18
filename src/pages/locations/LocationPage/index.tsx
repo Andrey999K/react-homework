@@ -1,7 +1,7 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import locations from "../../../data/locations.json";
-import { ObjectDefault } from "../../../../types";
+import { ObjectDefault } from "../../../types";
 
 const LocationPage = () => {
   const { locationId } = useParams();

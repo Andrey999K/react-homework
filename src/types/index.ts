@@ -1,12 +1,11 @@
 import React from "react";
 
 export interface DataItem {
-  id: number,
-  title: string
+  id: number;
+  title: string;
 }
 
 export type OnSubmit = (form: { [field: string]: string }) => void;
-
 
 export interface FormProps {
   onSubmit: OnSubmit;
@@ -26,9 +25,20 @@ export interface InputProps {
 }
 
 export type FormState = {
-  [field: string]: string
+  [field: string]: string;
 };
 
 export type ObjectDefault = {
-  [id: string]: any
+  [id: string]: any;
+};
+
+export type Character = {
+  id: number;
+  name: string;
+  status: string;
+  species: string;
+  type: string;
+  gender: string;
+  image: string;
+  created: string;
 };

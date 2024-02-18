@@ -1,7 +1,7 @@
 import React from "react";
 import characters from "../../../data/characters.json";
 import { useParams } from "react-router-dom";
-import { ObjectDefault } from "../../../../types";
+import { ObjectDefault } from "../../../types";
 import "./CharacterPage.scss";
 
 const CharacterPage = () => {

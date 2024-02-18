@@ -5,7 +5,7 @@ import NotFound from "./pages/NotFound";
 import CharactersList from "./pages/characters/CharactersList";
 import EpisodesList from "./pages/episodes/EpisodesList";
 import LocationsList from "./pages/locations/LocationsList";
-import MainLayout from "./Layouts/MainLayout";
+import MainLayout from "./layouts/MainLayout";
 import CharacterPage from "./pages/characters/CharacterPage";
 import EpisodePage from "./pages/episodes/EpisodePage";
 import LocationPage from "./pages/locations/LocationPage";

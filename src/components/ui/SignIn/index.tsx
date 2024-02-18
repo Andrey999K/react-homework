@@ -1,5 +1,5 @@
 import React, { FormEvent, useRef, useState } from "react";
-import { FormProps } from "../../../../types";
+import { FormProps } from "../../../types";
 import TextField from "../../common/TextField";
 import { useForm } from "../../../hooks/useForm";
 

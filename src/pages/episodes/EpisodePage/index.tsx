@@ -1,7 +1,7 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import episodes from "../../../data/episodes.json";
-import { ObjectDefault } from "../../../../types";
+import { ObjectDefault } from "../../../types";
 
 const EpisodePage = () => {
   const { episodeId } = useParams();
