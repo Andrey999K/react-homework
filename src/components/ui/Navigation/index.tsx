@@ -11,17 +11,17 @@ const Navigation = () => {
     },
     {
       id: 2,
-      path: "/characters",
+      path: "/characters?sort=ASC",
       text: "Герои"
     },
     {
       id: 3,
-      path: "/episodes",
+      path: "/episodes?sort=ASC",
       text: "Эпизоды"
     },
     {
       id: 4,
-      path: "/locations",
+      path: "/locations?sort=ASC",
       text: "Локации"
     }
   ];

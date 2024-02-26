@@ -1,14 +1,17 @@
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 import characters from "../../../data/characters.json";
-import { Link } from "react-router-dom";
-import { Character, DateTime } from "../../../types";
+import { Link, useSearchParams } from "react-router-dom";
+import { Character } from "../../../types";
 import { convertDataTime } from "../../../utils/convertDataTime";
 import Button from "../../../components/common/Button";
 import { useToggle } from "../../../hooks/useToggle";
 
 const CharactersList = () => {
-  // const [sortByCreated, setSortByCreated] = useState<"ASC" | "DESC">("ASC");
-  const [sortByCreated, handlerToggle] = useToggle(["ASC", "DESC"]);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const sortByCreated = searchParams.get("sort") || "ASC";
+  const handlerToggle = () => {
+    setSearchParams({ sort: sortByCreated === "ASC" ? "DESC" : "ASC" });
+  };
   return (
     <div>
       <div className="button-wrapper">
