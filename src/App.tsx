@@ -21,8 +21,6 @@ export function App() {
             <Route path=":characterId" element={<CharacterPage />} />
             <Route path="*" element={<NotFound />} />
           </Route>
-          {/*<Route path="characters" element={<CharactersList />} />*/}
-          {/*<Route path="characters/:characterId" element={<CharacterPage />} />*/}
           <Route path="episodes">
             <Route index element={<EpisodesList />} />
             <Route path=":episodeId" element={<EpisodePage />} />
@@ -35,11 +33,6 @@ export function App() {
           </Route>
           <Route path="*" element={<NotFound />} />
         </Route>
-        {/*<Route path="/" element={<Home />} />*/}
-        {/*<Route path="/characters" element={<CharactersList />} />*/}
-        {/*<Route path="/characters/element" element={<CharacterPage />} />*/}
-        {/*<Route path="/episodes" element={<EpisodesList />} />*/}
-        {/*<Route path="/location" element={<LocationsList />} />*/}
       </Routes>
     </>
   );
