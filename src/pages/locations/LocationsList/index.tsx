@@ -1,5 +1,5 @@
 import React from "react";
-import locations from "../../../data/locations.json";
+import locations from "../../../mock/locations.json";
 import { Link } from "react-router-dom";
 
 const LocationsList = () => {

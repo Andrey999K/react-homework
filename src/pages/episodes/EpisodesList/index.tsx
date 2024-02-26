@@ -1,5 +1,5 @@
 import React from "react";
-import episodes from "../../../data/episodes.json";
+import episodes from "../../../mock/episodes.json";
 import { Link } from "react-router-dom";
 
 const EpisodesList = () => {

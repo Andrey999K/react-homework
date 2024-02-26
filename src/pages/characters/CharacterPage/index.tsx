@@ -1,5 +1,5 @@
 import React from "react";
-import characters from "../../../data/characters.json";
+import characters from "../../../mock/characters.json";
 import { useParams } from "react-router-dom";
 import { ObjectDefault } from "../../../types";
 import "./CharacterPage.scss";

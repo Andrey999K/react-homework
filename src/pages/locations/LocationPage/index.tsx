@@ -1,6 +1,6 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import locations from "../../../data/locations.json";
+import locations from "../../../mock/locations.json";
 import { ObjectDefault } from "../../../types";
 
 const LocationPage = () => {
