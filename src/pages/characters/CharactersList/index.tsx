@@ -5,13 +5,10 @@ import { Character } from "../../../types";
 import { convertDataTime } from "../../../utils/convertDataTime";
 import Button from "../../../components/common/Button";
 import { useToggle } from "../../../hooks/useToggle";
+import useSort from "../../../hooks/useSort";
 
 const CharactersList = () => {
-  const [searchParams, setSearchParams] = useSearchParams();
-  const sortByCreated = searchParams.get("sort") || "ASC";
-  const handlerToggle = () => {
-    setSearchParams({ sort: sortByCreated === "ASC" ? "DESC" : "ASC" });
-  };
+  const { sortByCreated, handlerToggle } = useSort();
   return (
     <div>
       <div className="button-wrapper">

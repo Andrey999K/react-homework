@@ -44,3 +44,5 @@ export type Character = {
 };
 
 export type DateTime = Date | number | bigint;
+
+export type SortedDirection = "ASC" | "DESC";
