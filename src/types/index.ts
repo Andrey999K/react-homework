@@ -46,3 +46,8 @@ export type Character = {
 export type DateTime = Date | number | bigint;
 
 export type SortedDirection = "ASC" | "DESC";
+
+export type User = {
+  login: string;
+  password: string;
+};

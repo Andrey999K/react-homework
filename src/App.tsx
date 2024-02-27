@@ -10,10 +10,11 @@ import CharacterPage from "./pages/characters/CharacterPage";
 import EpisodePage from "./pages/episodes/EpisodePage";
 import LocationPage from "./pages/locations/LocationPage";
 import Login from "./pages/Login";
+import AuthProvider from "./context/AuthProvider";
 
 export function App() {
   return (
-    <>
+    <AuthProvider>
       <Routes>
         <Route path="/" element={<MainLayout />}>
           <Route index element={<Home />} />
@@ -36,6 +37,6 @@ export function App() {
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
-    </>
+    </AuthProvider>
   );
 }
