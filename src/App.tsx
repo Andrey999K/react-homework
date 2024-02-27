@@ -9,6 +9,7 @@ import MainLayout from "./layouts/MainLayout";
 import CharacterPage from "./pages/characters/CharacterPage";
 import EpisodePage from "./pages/episodes/EpisodePage";
 import LocationPage from "./pages/locations/LocationPage";
+import Login from "./pages/Login";
 
 export function App() {
   return (
@@ -31,6 +32,7 @@ export function App() {
             <Route path=":locationId" element={<LocationPage />} />
             <Route path="*" element={<NotFound />} />
           </Route>
+          <Route path="login" element={<Login />} />
           <Route path="*" element={<NotFound />} />
         </Route>
       </Routes>
