@@ -51,5 +51,5 @@ export type Callback = () => void;
 
 export type User = {
   email: string;
-  password: string;
+  password?: string;
 };

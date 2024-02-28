@@ -18,14 +18,18 @@ export const useAuth = () => {
 };
 
 const AuthProvider = ({ children }: AuthProviderProps) => {
-  const [user, setUser] = useState<User | null>(null);
+  const localStorageUser = localStorage.getItem("user");
+  const [user, setUser] = useState<User | null>(localStorageUser ? { email: localStorageUser } : null);
   const signIn = (newUser: User, callback: () => void) => {
+    console.log(newUser);
     setUser(newUser);
+    localStorage.setItem("user", newUser.email);
     callback();
   };
 
   const signOut = (callback: () => void) => {
     setUser(null);
+    localStorage.removeItem("user");
     callback();
   };
 
