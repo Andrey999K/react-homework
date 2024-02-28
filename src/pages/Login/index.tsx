@@ -1,10 +1,16 @@
 import React from "react";
 import SignIn from "../../components/ui/SignIn";
-import { OnSubmit } from "../../types";
+import { OnSubmit, User } from "../../types";
+import { useAuth } from "../../context/AuthProvider";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
-  const handlerSubmit: OnSubmit = data => {
-    console.log(data);
+  const auth = useAuth();
+  const navigate = useNavigate();
+  const handlerSubmit = (data: User) => {
+    auth.signIn(data, () => {
+      navigate("/");
+    });
   };
   return (
     <div className="flex justify-center w-full items-center">

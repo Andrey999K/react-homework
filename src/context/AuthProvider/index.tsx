@@ -1,14 +1,20 @@
-import React, { createContext, useState } from "react";
-import { User } from "../../types";
+import React, { createContext, useContext, useState } from "react";
+import { Callback, User } from "../../types";
 
-const AuthContext = createContext(null);
+type AuthContextType = {
+  user: User | null;
+  signIn?: (newUser: User, callback: Callback) => void;
+  signOut?: (callback: Callback) => void;
+};
+
+const AuthContext: React.Context<AuthContextType | null> = createContext(null);
 
 interface AuthProviderProps {
-  children: React.ReactNode;
+  children: React.ReactNode | Array<React.ReactNode>;
 }
 
 export const useAuth = () => {
-  return AuthContext;
+  return useContext(AuthContext);
 };
 
 const AuthProvider = ({ children }: AuthProviderProps) => {

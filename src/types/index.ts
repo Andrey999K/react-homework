@@ -47,7 +47,9 @@ export type DateTime = Date | number | bigint;
 
 export type SortedDirection = "ASC" | "DESC";
 
+export type Callback = () => void;
+
 export type User = {
-  login: string;
+  email: string;
   password: string;
 };
