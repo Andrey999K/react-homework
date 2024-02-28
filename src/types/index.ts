@@ -46,3 +46,10 @@ export type Character = {
 export type DateTime = Date | number | bigint;
 
 export type SortedDirection = "ASC" | "DESC";
+
+export type Callback = () => void;
+
+export type User = {
+  email: string;
+  password?: string;
+};
