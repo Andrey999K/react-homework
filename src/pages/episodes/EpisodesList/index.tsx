@@ -10,7 +10,7 @@ const EpisodesList = () => {
   const { sortByCreated, handlerToggle } = useSort();
   return (
     <div>
-      <div className="button-wrapper">
+      <div className="bg-gray">
         <Button onClick={handlerToggle}>{sortByCreated}</Button>
       </div>
       <ul className="list">

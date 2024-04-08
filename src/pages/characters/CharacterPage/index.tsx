@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import characters from "../../../mock/characters.json";
 import { useParams } from "react-router-dom";
 import { ObjectDefault } from "../../../types";
