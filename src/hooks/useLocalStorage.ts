@@ -1,9 +1,14 @@
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 
-type TypeSetItem = (value: string) => void;
-type TypeRemoveItem = () => void;
+type UseLocalStorageReturn = [
+  string,
+  {
+    setItem: (value: string) => void;
+    removeItem: () => void;
+  },
+];
 
-export function useLocalStorage<UseLocalStorage>(field: string): [string, { setItem: TypeSetItem, removeItem: TypeRemoveItem }] {
+export function useLocalStorage(field: string): UseLocalStorageReturn {
   const [token, setToken] = useState<string | null>(null);
   const setItem = (value: string): void => {
     setToken(value);
@@ -11,7 +16,7 @@ export function useLocalStorage<UseLocalStorage>(field: string): [string, { setI
   };
   const removeItem = (): void => {
     localStorage.removeItem(field);
-    setToken(null)
+    setToken(null);
   };
   useEffect(() => {
     const value = localStorage.getItem(field);
