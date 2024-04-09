@@ -2,7 +2,15 @@ import React from "react";
 import { InputProps } from "../../../types";
 import "./TextField.scss";
 
-const TextField = ({ label, description, radius, styles, rightIcon, leftIcon, ...restProps }: InputProps) => {
+const TextField = ({
+  label,
+  description,
+  radius,
+  styles,
+  rightIcon,
+  leftIcon,
+  ...restProps
+}: InputProps) => {
   console.log(styles ? styles : radius ? { borderRadius: `${radius}px` } : {});
   return (
     <label className="label">

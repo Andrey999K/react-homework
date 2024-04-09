@@ -5,10 +5,10 @@ interface ButtonInterface extends ButtonHTMLAttributes<HTMLButtonElement> {
   className?: string;
 }
 
-const Button = ({ children, className, ...attr }: ButtonInterface) => {
+const Button = ({ children, className, ...attrs }: ButtonInterface) => {
   const classes = "p-4 rounded bg-orange-400 " + (className || "");
   return (
-    <button className={classes} {...attr}>
+    <button className={classes} {...attrs}>
       {children}
     </button>
   );
