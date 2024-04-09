@@ -4,7 +4,7 @@ import { OnSubmit, User } from "../../types";
 import { useAuth } from "../../context/AuthProvider";
 import { useLocation, useNavigate } from "react-router-dom";
 
-const Login = () => {
+export const Login = () => {
   const auth = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
@@ -23,5 +23,3 @@ const Login = () => {
     </div>
   );
 };
-
-export default Login;

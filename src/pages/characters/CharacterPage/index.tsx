@@ -4,12 +4,18 @@ import { useParams } from "react-router-dom";
 import { ObjectDefault } from "../../../types";
 import "./CharacterPage.scss";
 
-const CharacterPage = () => {
+export const CharacterPage = () => {
   const { characterId } = useParams();
-  const character: ObjectDefault = characters.find(item => item.id.toString() === characterId);
+  const character: ObjectDefault = characters.find(
+    item => item.id.toString() === characterId
+  );
   return (
     <div className="character">
-      <img className="character__image" src={character.image} alt={character.name} />
+      <img
+        className="character__image"
+        src={character.image}
+        alt={character.name}
+      />
       <ul className="list">
         {Object.keys(character).map(item => {
           if (item !== "image")
@@ -23,5 +29,3 @@ const CharacterPage = () => {
     </div>
   );
 };
-
-export default CharacterPage;

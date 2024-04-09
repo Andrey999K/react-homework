@@ -6,7 +6,7 @@ import Button from "../../../components/common/Button";
 import useSort from "../../../hooks/useSort";
 import sortByDateCreated from "../../../utils/sortByDateCreated";
 
-const CharactersList = () => {
+export const CharactersList = () => {
   const { sortByCreated, handlerToggle } = useSort();
   return (
     <div>
@@ -28,4 +28,3 @@ const CharactersList = () => {
   );
 };
 
-export default CharactersList;

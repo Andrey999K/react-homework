@@ -6,7 +6,7 @@ import sortByDateCreated from "../../../utils/sortByDateCreated";
 import Button from "../../../components/common/Button";
 import { convertDataTime } from "../../../utils/convertDataTime";
 
-const EpisodesList = () => {
+export const EpisodesList = () => {
   const { sortByCreated, handlerToggle } = useSort();
   return (
     <div>
@@ -18,7 +18,9 @@ const EpisodesList = () => {
           <li key={item.id}>
             <Link to={`/episodes/${item.id}`} className="list__link">
               <span className="list__name">{item.name}</span>
-              <span className="list__datetime">{convertDataTime(item.created)}</span>
+              <span className="list__datetime">
+                {convertDataTime(item.created)}
+              </span>
             </Link>
           </li>
         ))}
@@ -26,5 +28,3 @@ const EpisodesList = () => {
     </div>
   );
 };
-
-export default EpisodesList;

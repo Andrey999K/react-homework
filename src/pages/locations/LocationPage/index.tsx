@@ -3,9 +3,11 @@ import { useParams } from "react-router-dom";
 import locations from "../../../mock/locations.json";
 import { ObjectDefault } from "../../../types";
 
-const LocationPage = () => {
+export const LocationPage = () => {
   const { locationId } = useParams();
-  const location: ObjectDefault = locations.find(location => location.id.toString() === locationId);
+  const location: ObjectDefault = locations.find(
+    location => location.id.toString() === locationId
+  );
   return (
     <ul className="list">
       {Object.keys(location).map(field => (
@@ -17,5 +19,3 @@ const LocationPage = () => {
     </ul>
   );
 };
-
-export default LocationPage;

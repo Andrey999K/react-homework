@@ -3,9 +3,11 @@ import { useParams } from "react-router-dom";
 import episodes from "../../../mock/episodes.json";
 import { ObjectDefault } from "../../../types";
 
-const EpisodePage = () => {
+export const EpisodePage = () => {
   const { episodeId } = useParams();
-  const episode: ObjectDefault = episodes.find(episode => episode.id.toString() === episodeId);
+  const episode: ObjectDefault = episodes.find(
+    episode => episode.id.toString() === episodeId
+  );
   return (
     <ul className="list">
       {Object.keys(episode).map(field => (
@@ -17,5 +19,3 @@ const EpisodePage = () => {
     </ul>
   );
 };
-
-export default EpisodePage;

@@ -1,16 +1,49 @@
-import React from 'react';
+import React, { lazy } from "react";
 import { Route, Routes } from "react-router-dom";
 import MainLayout from "../../../layouts/MainLayout";
-import Home from "../../../pages/Home";
-import CharactersList from "../../../pages/characters/CharactersList";
-import CharacterPage from "../../../pages/characters/CharacterPage";
-import NotFound from "../../../pages/NotFound";
-import EpisodesList from "../../../pages/episodes/EpisodesList";
-import EpisodePage from "../../../pages/episodes/EpisodePage";
-import LocationsList from "../../../pages/locations/LocationsList";
-import LocationPage from "../../../pages/locations/LocationPage";
 import PrivateRoute from "../PrivateRoute";
-import Login from "../../../pages/Login";
+
+const Home = lazy(() =>
+  import("../../../pages/Home").then(module => ({ default: module.Home }))
+);
+const CharactersList = lazy(() =>
+  import("../../../pages/characters/CharactersList").then(module => ({
+    default: module.CharactersList
+  }))
+);
+const CharacterPage = lazy(() =>
+  import("../../../pages/characters/CharacterPage").then(module => ({
+    default: module.CharacterPage
+  }))
+);
+const EpisodesList = lazy(() =>
+  import("../../../pages/episodes/EpisodesList").then(module => ({
+    default: module.EpisodesList
+  }))
+);
+const EpisodePage = lazy(() =>
+  import("../../../pages/episodes/EpisodePage").then(module => ({
+    default: module.EpisodePage
+  }))
+);
+const LocationsList = lazy(() =>
+  import("../../../pages/locations/LocationsList").then(module => ({
+    default: module.LocationsList
+  }))
+);
+const LocationPage = lazy(() =>
+  import("../../../pages/locations/LocationPage").then(module => ({
+    default: module.LocationPage
+  }))
+);
+const Login = lazy(() =>
+  import("../../../pages/Login").then(module => ({ default: module.Login }))
+);
+const NotFound = lazy(() =>
+  import("../../../pages/NotFound").then(module => ({
+    default: module.NotFound
+  }))
+);
 
 const AppRouter = () => {
   return (
