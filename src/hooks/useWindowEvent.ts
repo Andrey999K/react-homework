@@ -11,6 +11,8 @@ export function useWindowEvent(
     if (typeof window !== "undefined") {
       window.addEventListener(type, listener, options);
       return () => window.removeEventListener(type, listener, options);
+    } else {
+      throw new Error("Object window not found!");
     }
   }, [type, listener]);
 }
