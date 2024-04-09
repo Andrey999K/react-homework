@@ -25,6 +25,6 @@ export interface InputProps {
   required?: boolean;
 }
 
-export type FormState = {
-  [field: string]: string
+export type FormState<T = string> = {
+  [field: string]: T
 }
