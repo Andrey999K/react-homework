@@ -4,8 +4,8 @@ interface ButtonInterface extends ButtonHTMLAttributes<HTMLButtonElement> {
   children: React.ReactNode;
 }
 
-const Button = ({ children, ...attr }: ButtonInterface) => {
-  return <button {...attr}>{children}</button>;
+const Button = ({ children, ...attrs }: ButtonInterface) => {
+  return <button {...attrs}>{children}</button>;
 };
 
 export default Button;
