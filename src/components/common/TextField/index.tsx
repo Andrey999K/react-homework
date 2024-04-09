@@ -2,7 +2,7 @@ import React from "react";
 import { InputProps } from "../../../../types";
 import "./TextField.scss";
 
-const TextField = ({ name, type, placeholder, label, description, radius, styles, rightIcon, leftIcon, required = true }: InputProps) => {
+const TextField = ({ label, description, radius, styles, rightIcon, leftIcon, ...restProps }: InputProps) => {
   console.log(styles ? styles : radius ? { borderRadius: `${radius}px` } : {});
   return (
     <label className="label">
@@ -15,11 +15,8 @@ const TextField = ({ name, type, placeholder, label, description, radius, styles
         {!!rightIcon && <span>{rightIcon}</span>}
         <input
           className="input"
-          type={type}
-          name={name}
-          placeholder={placeholder}
           autoComplete="off"
-          required={required}
+          {...restProps}
         />
         {!!leftIcon && <span className="input__left-icon">{leftIcon}</span>}
       </div>
