@@ -1,5 +1,5 @@
 import React from "react";
-import { InputProps } from "../../../../types";
+import { InputProps } from "../../../types";
 import "./TextField.scss";
 
 const TextField = ({ label, description, radius, styles, rightIcon, leftIcon, ...restProps }: InputProps) => {
@@ -8,10 +8,7 @@ const TextField = ({ label, description, radius, styles, rightIcon, leftIcon, ..
     <label className="label">
       {!!label && <span className="label__text">{label}</span>}
       {!!label && <span className="label__description">{description ? description : `Input ${label}`}</span>}
-      <div
-        className="input-wrapper"
-        style={styles ? styles : radius ? { borderRadius: `${radius}px` } : {}}
-      >
+      <div className="input-wrapper" style={styles ? styles : radius ? { borderRadius: `${radius}px` } : {}}>
         {!!rightIcon && <span>{rightIcon}</span>}
         <input
           className="input"
