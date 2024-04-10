@@ -1,17 +1,12 @@
 import React, { useEffect, useState } from "react";
-import characters from "../../../mock/characters.json";
 import { useParams } from "react-router-dom";
-import { Character, ObjectDefault } from "../../../types";
-import "./CharacterPage.scss";
+import { ObjectDefault } from "../../../types";
 import axios from "axios";
 
 export const CharacterPage = () => {
   const [character, setCharacter] = useState<ObjectDefault | null>();
   const { characterId } = useParams();
   const [loading, setLoading] = useState(true);
-  // const character: ObjectDefault = characters.find(
-  //   item => item.id.toString() === characterId
-  // );
   useEffect(() => {
     axios({
       method: "GET",
@@ -25,18 +20,18 @@ export const CharacterPage = () => {
   if (loading) return <div className="text-center w-full">Loading...</div>;
 
   return (
-    <div className="character">
+    <div className="flex mt-5 gap-5">
       <img
-        className="character__image"
+        className="w-full max-w-[300px]"
         src={character.image}
         alt={character.name}
       />
       <ul className="flex flex-col gap-5">
-        {Object.keys(character).map(item => {
-          if (item !== "image" && typeof character[item] === "string") {
+        {Object.keys(character).map(field => {
+          if (field !== "image" && typeof character[field] === "string") {
             return (
-              <li key={item}>
-                <b>{item}:</b> <span>{character[item]}</span>
+              <li key={field}>
+                <b>{field}:</b> <span>{character[field]}</span>
               </li>
             );
           }
