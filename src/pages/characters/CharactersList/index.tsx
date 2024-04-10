@@ -1,82 +1,42 @@
-import React, {
-  ReactNode,
-  useCallback,
-  useEffect,
-  useRef,
-  useState
-} from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 import { convertDataTime } from "../../../utils/convertDataTime";
 import Button from "../../../components/common/Button";
 import useSort from "../../../hooks/useSort";
 import sortByDateCreated from "../../../utils/sortByDateCreated";
-import axios from "axios";
+import { useGetListItems } from "../../../hooks/useGetListItems";
 import { Character } from "../../../types";
 
 export const CharactersList: React.FC = () => {
   const { sortByCreated, handlerToggle } = useSort();
-  const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<boolean>(false);
-  const [charactersList, setCharactersList] = useState<Character[]>([]);
-  const [hasMore, setHasMore] = useState<boolean>(false);
-  const [pageNumber, setPageNumber] = useState<number>(1);
+  const {
+    loading,
+    error,
+    listItems: charactersList,
+    lastNodeRef
+  } = useGetListItems<Character>("https://rickandmortyapi.com/api/character");
 
-  const observer = useRef<IntersectionObserver | null>(null);
-  const lastNodeRef = useCallback(
-    (node: HTMLElement | null) => {
-      console.log("node: ", node);
-      if (loading) return;
-      if (observer.current) {
-        observer.current.disconnect();
-      }
-
-      observer.current = new IntersectionObserver(entries => {
-        if (entries[0].isIntersecting && hasMore) {
-          setPageNumber(prevState => prevState + 1);
-        }
-      });
-      if (node) {
-        observer.current.observe(node);
-      }
-    },
-    [loading, hasMore]
-  );
-
-  useEffect(() => {
-    setLoading(true);
-    setError(false);
-    axios({
-      method: "GET",
-      url: "https://rickandmortyapi.com/api/character",
-      params: { page: pageNumber }
-    })
-      .then(res => {
-        setCharactersList(prevState => [...prevState, ...res.data.results]);
-        setHasMore(res.data.results.length > 0);
-      })
-      .catch(e => {
-        if (axios.isCancel(e)) {
-          return;
-        }
-        setError(false);
-        console.log(e);
-      })
-      .finally(() => setLoading(false));
-  }, [pageNumber]);
   return (
     <div>
-      <div className="button-wrapper">
+      <div className="mb-5">
         <Button onClick={handlerToggle}>{sortByCreated}</Button>
       </div>
-      <ul className="list">
+      <ul className="flex flex-col gap-5">
         {sortByDateCreated(charactersList, sortByCreated).map((item, index) => {
           if (charactersList.length - 3 === index + 1) {
             return (
               <li ref={lastNodeRef} key={item.id}>
-                <Link to={`/characters/${item.id}`} className="list__link">
-                  <img src={item.image} alt={item.name} />
-                  <span className="list__name">{item.name}</span>
-                  <span className="list__datetime">
+                <Link
+                  to={`/characters/${item.id}`}
+                  className="flex items-center gap-5"
+                >
+                  <img
+                    className="w-full h-wull max-w-[50px] max-h-[50px]"
+                    src={item.image}
+                    alt={item.name}
+                  />
+                  <span className="w-full max-w-[300px]">{item.name}</span>
+                  <span className="w-full max-w-[300px]">
                     {convertDataTime(item.created)}
                   </span>
                 </Link>
@@ -85,10 +45,17 @@ export const CharactersList: React.FC = () => {
           } else {
             return (
               <li key={item.id}>
-                <Link to={`/characters/${item.id}`} className="list__link">
-                  <img src={item.image} alt={item.name} />
-                  <span className="list__name">{item.name}</span>
-                  <span className="list__datetime">
+                <Link
+                  to={`/characters/${item.id}`}
+                  className="flex items-center gap-5"
+                >
+                  <img
+                    className="w-full h-wull max-w-[50px] max-h-[50px]"
+                    src={item.image}
+                    alt={item.name}
+                  />
+                  <span className="w-full max-w-[300px]">{item.name}</span>
+                  <span className="w-full max-w-[300px]">
                     {convertDataTime(item.created)}
                   </span>
                 </Link>

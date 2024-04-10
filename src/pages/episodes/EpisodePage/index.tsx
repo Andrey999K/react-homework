@@ -9,7 +9,7 @@ export const EpisodePage = () => {
     episode => episode.id.toString() === episodeId
   );
   return (
-    <ul className="list">
+    <ul className="flex flex-col gap-5">
       {Object.keys(episode).map(field => (
         <li key={field}>
           <b>{field}: </b>

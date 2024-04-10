@@ -10,15 +10,18 @@ export const LocationsList = () => {
   const { sortByCreated, handlerToggle } = useSort();
   return (
     <div>
-      <div className="button-wrapper">
+      <div className="mb-5">
         <Button onClick={handlerToggle}>{sortByCreated}</Button>
       </div>
-      <ul className="list">
+      <ul className="flex flex-col gap-5">
         {sortByDateCreated(locations, sortByCreated).map(item => (
           <li key={item.id}>
-            <Link to={`/locations/${item.id}`} className="list__link">
-              <span className="list__name">{item.name}</span>
-              <span className="list__datetime">
+            <Link
+              to={`/locations/${item.id}`}
+              className="flex items-center gap-5"
+            >
+              <span className="w-full max-w-[300px]">{item.name}</span>
+              <span className="w-full max-w-[300px]">
                 {convertDataTime(item.created)}
               </span>
             </Link>

@@ -9,7 +9,7 @@ export const LocationPage = () => {
     location => location.id.toString() === locationId
   );
   return (
-    <ul className="list">
+    <ul className="flex flex-col gap-5">
       {Object.keys(location).map(field => (
         <li>
           <b>{field}: </b>

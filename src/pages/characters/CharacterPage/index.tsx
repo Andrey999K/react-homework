@@ -31,7 +31,7 @@ export const CharacterPage = () => {
         src={character.image}
         alt={character.name}
       />
-      <ul className="list">
+      <ul className="flex flex-col gap-5">
         {Object.keys(character).map(item => {
           if (item !== "image" && typeof character[item] === "string") {
             return (
