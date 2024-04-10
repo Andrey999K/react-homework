@@ -47,17 +47,8 @@ const NotFound = lazy(() =>
 );
 
 const AppRouter = () => {
-  const location = useLocation();
   return (
     <Routes>
-      <Route
-        path="*"
-        element={
-          <ErrorBoundary key={location.pathname}>
-            <Outlet />
-          </ErrorBoundary>
-        }
-      />
       <Route path="/" element={<MainLayout />}>
         <Route index element={<Home />} />
         <Route element={<PrivateRoute />}>
