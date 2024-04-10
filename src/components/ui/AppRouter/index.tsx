@@ -1,7 +1,8 @@
 import React, { lazy } from "react";
-import { Route, Routes } from "react-router-dom";
+import { Outlet, Route, Routes, useLocation } from "react-router-dom";
 import MainLayout from "../../../layouts/MainLayout";
 import PrivateRoute from "../PrivateRoute";
+import ErrorBoundary from "../ErrorBoundary";
 
 const Home = lazy(() =>
   import("../../../pages/Home").then(module => ({ default: module.Home }))
@@ -46,8 +47,17 @@ const NotFound = lazy(() =>
 );
 
 const AppRouter = () => {
+  const location = useLocation();
   return (
     <Routes>
+      <Route
+        path="*"
+        element={
+          <ErrorBoundary key={location.pathname}>
+            <Outlet />
+          </ErrorBoundary>
+        }
+      />
       <Route path="/" element={<MainLayout />}>
         <Route index element={<Home />} />
         <Route element={<PrivateRoute />}>

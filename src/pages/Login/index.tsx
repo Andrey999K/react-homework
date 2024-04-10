@@ -8,7 +8,6 @@ export const Login = () => {
   const auth = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
-  console.log(location);
   const from = location.state?.from || "/";
   const handlerSubmit = (data: User) => {
     auth.signIn(data, () => {
