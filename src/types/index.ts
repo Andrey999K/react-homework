@@ -13,7 +13,15 @@ export interface FormProps {
 
 export interface InputProps {
   name: string;
-  type: "text" | "password" | "email" | "number" | "date" | "checkbox" | "radio" | "file";
+  type:
+    | "text"
+    | "password"
+    | "email"
+    | "number"
+    | "date"
+    | "checkbox"
+    | "radio"
+    | "file";
   placeholder?: string;
   label?: string;
   description?: string;
@@ -25,8 +33,8 @@ export interface InputProps {
 }
 
 export type FormState<T = string> = {
-  [field: string]: T
-}
+  [field: string]: T;
+};
 
 export type ObjectDefault = {
   [id: string]: any;
@@ -52,4 +60,12 @@ export type Callback = () => void;
 export type User = {
   email: string;
   password?: string;
+};
+
+export type Episode = {
+  id: number;
+  name: string;
+  air_date: string;
+  episode: string;
+  created: string;
 };

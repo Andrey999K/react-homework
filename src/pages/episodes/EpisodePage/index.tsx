@@ -1,21 +1,37 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import episodes from "../../../mock/episodes.json";
 import { ObjectDefault } from "../../../types";
+import axios from "axios";
 
-const EpisodePage = () => {
+export const EpisodePage = () => {
   const { episodeId } = useParams();
-  const episode: ObjectDefault = episodes.find(episode => episode.id.toString() === episodeId);
+  const [episode, setEpisode] = useState<ObjectDefault | null>();
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    axios({
+      method: "GET",
+      url: `https://rickandmortyapi.com/api/episode/${episodeId}`
+    }).then(res => {
+      setEpisode(res.data);
+      setLoading(false);
+    });
+  }, []);
+
+  if (loading) return <div className="text-center w-full">Loading...</div>;
+
   return (
-    <ul className="list">
-      {Object.keys(episode).map(field => (
-        <li key={field}>
-          <b>{field}: </b>
-          <span>{episode[field]}</span>
-        </li>
-      ))}
+    <ul className="flex flex-col gap-5">
+      {Object.keys(episode).map(field => {
+        if (typeof episode[field] === "string") {
+          return (
+            <li key={field}>
+              <b>{field}: </b>
+              <span>{episode[field]}</span>
+            </li>
+          );
+        }
+      })}
     </ul>
   );
 };
-
-export default EpisodePage;

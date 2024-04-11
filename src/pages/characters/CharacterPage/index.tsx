@@ -1,27 +1,42 @@
-import React, { useEffect } from "react";
-import characters from "../../../mock/characters.json";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { ObjectDefault } from "../../../types";
-import "./CharacterPage.scss";
+import axios from "axios";
 
-const CharacterPage = () => {
+export const CharacterPage = () => {
+  const [character, setCharacter] = useState<ObjectDefault | null>();
   const { characterId } = useParams();
-  const character: ObjectDefault = characters.find(item => item.id.toString() === characterId);
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    axios({
+      method: "GET",
+      url: `https://rickandmortyapi.com/api/character/${characterId}`
+    }).then(res => {
+      setCharacter(res.data);
+      setLoading(false);
+    });
+  }, []);
+
+  if (loading) return <div className="text-center w-full">Loading...</div>;
+
   return (
-    <div className="character">
-      <img className="character__image" src={character.image} alt={character.name} />
-      <ul className="list">
-        {Object.keys(character).map(item => {
-          if (item !== "image")
+    <div className="flex mt-5 gap-5">
+      <img
+        className="w-full max-w-[300px]"
+        src={character.image}
+        alt={character.name}
+      />
+      <ul className="flex flex-col gap-5">
+        {Object.keys(character).map(field => {
+          if (field !== "image" && typeof character[field] === "string") {
             return (
-              <li key={item}>
-                <b>{item}:</b> <span>{character[item]}</span>
+              <li key={field}>
+                <b>{field}:</b> <span>{character[field]}</span>
               </li>
             );
+          }
         })}
       </ul>
     </div>
   );
 };
-
-export default CharacterPage;
