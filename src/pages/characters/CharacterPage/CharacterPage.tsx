@@ -27,7 +27,8 @@ export const CharacterPage = () => {
       });
   }, []);
 
-  if (loading) return <div className="text-center w-full">Loading...</div>;
+  if (loading || !character)
+    return <div className="text-center w-full">Loading...</div>;
   if (error) return <div className="text-red-500">Error!</div>;
 
   return (

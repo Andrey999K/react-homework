@@ -28,7 +28,8 @@ export const EpisodePage = () => {
       });
   }, []);
 
-  if (loading) return <div className="text-center w-full">Loading...</div>;
+  if (loading || !episode)
+    return <div className="text-center w-full">Loading...</div>;
   if (error) return <div className="text-red-500">Error!</div>;
 
   return (
