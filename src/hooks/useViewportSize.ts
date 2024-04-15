@@ -13,7 +13,7 @@ export function useViewportSize() {
       height: window.innerHeight,
       width: window.innerWidth
     });
-  }
+  };
   useWindowEvent("resize", handlerResize);
   return throttleValue;
 }

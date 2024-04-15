@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 
 type UseLocalStorageReturn = [
-  string,
+  string | null,
   {
     setItem: (value: string) => void;
     removeItem: () => void;
-  },
+  }
 ];
 
 export function useLocalStorage(field: string): UseLocalStorageReturn {
