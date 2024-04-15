@@ -7,7 +7,7 @@ type AuthContextType = {
   signOut?: (callback: Callback) => void;
 };
 
-const AuthContext: React.Context<AuthContextType | null> = createContext(null);
+const AuthContext = createContext<AuthContextType | null>(null);
 
 interface AuthProviderProps {
   children: React.ReactNode | Array<React.ReactNode>;
