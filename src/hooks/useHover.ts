@@ -1,8 +1,8 @@
-import {RefObject, useEffect, useRef, useState} from "react";
+import { RefObject, useEffect, useRef, useState } from "react";
 
 interface UseHoverInterface {
-  hovered: boolean,
-  ref: RefObject<HTMLDivElement | undefined>
+  hovered: boolean;
+  ref: RefObject<HTMLDivElement | undefined>;
 }
 
 export function useHover(): UseHoverInterface {
@@ -15,7 +15,7 @@ export function useHover(): UseHoverInterface {
     return () => {
       if (ref) ref.current.removeEventListener("mouseenter", handlerMouseHover);
       if (ref) ref.current.removeEventListener("mouseleave", handlerMouseHover);
-    }
+    };
   }, []);
   return { hovered, ref };
 }

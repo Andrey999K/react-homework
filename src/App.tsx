@@ -1,4 +1,3 @@
-import React from "react";
 import AppRouter from "./components/ui/AppRouter";
 import AuthProvider from "./context/AuthProvider";
 
