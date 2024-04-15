@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import axios from "axios";
+import { useIntersectionObserver } from "./useIntersectionObserver";
 
 export const useGetListItems = <T>(url: string) => {
   const [loading, setLoading] = useState<boolean>(true);
@@ -7,25 +8,10 @@ export const useGetListItems = <T>(url: string) => {
   const [listItems, setlistItems] = useState<T[]>([]);
   const [hasMore, setHasMore] = useState<boolean>(false);
   const [pageNumber, setPageNumber] = useState<number>(1);
-
-  const observer = useRef<IntersectionObserver | null>(null);
-  const lastNodeRef = useCallback(
-    (node: HTMLElement | null) => {
-      if (loading) return;
-      if (observer.current) {
-        observer.current.disconnect();
-      }
-
-      observer.current = new IntersectionObserver(entries => {
-        if (entries[0].isIntersecting && hasMore) {
-          setPageNumber(prevState => prevState + 1);
-        }
-      });
-      if (node) {
-        observer.current.observe(node);
-      }
-    },
-    [loading, hasMore]
+  const { lastNodeRef } = useIntersectionObserver(
+    loading,
+    setPageNumber,
+    hasMore
   );
 
   useEffect(() => {
