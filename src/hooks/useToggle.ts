@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export function useToggle(states: Array<string>, startValue?: number | string): [string, () => void] {
+export function useToggle(states: Array<string> = ["true", "false"], startValue?: number | string): [string, () => void] {
   const [index, setIndex] = useState<number>(
     typeof startValue === "string" ? states.findIndex(state => state === startValue) : 0
   );
