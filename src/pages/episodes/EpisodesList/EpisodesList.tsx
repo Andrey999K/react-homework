@@ -14,7 +14,7 @@ export const EpisodesList = () => {
     error,
     listItems: episodes,
     lastNodeRef
-  } = useGetListItems<Episode>("https://rickandmortyapi.com/api/episode");
+  } = useGetListItems<Episode>("episode");
   return (
     <div>
       <div className="bg-gray">

@@ -15,7 +15,7 @@ export const LocationsList = () => {
     error,
     listItems: locations,
     lastNodeRef
-  } = useGetListItems<Character>("https://rickandmortyapi.com/api/location");
+  } = useGetListItems<Character>("location");
   return (
     <div>
       <div className="mb-5">

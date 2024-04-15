@@ -6,18 +6,29 @@ import axios from "axios";
 export const CharacterPage = () => {
   const [character, setCharacter] = useState<ObjectDefault | null>();
   const { characterId } = useParams();
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
   useEffect(() => {
+    setLoading(true);
     axios({
       method: "GET",
       url: `https://rickandmortyapi.com/api/character/${characterId}`
-    }).then(res => {
-      setCharacter(res.data);
-      setLoading(false);
-    });
+    })
+      .then(res => {
+        setCharacter(res.data);
+        setLoading(false);
+      })
+      .catch(e => {
+        if (axios.isCancel(e)) {
+          return;
+        }
+        setError(true);
+        console.log(e);
+      });
   }, []);
 
   if (loading) return <div className="text-center w-full">Loading...</div>;
+  if (error) return <div className="text-red-500">Error!</div>;
 
   return (
     <div className="flex mt-5 gap-5">

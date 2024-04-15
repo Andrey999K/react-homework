@@ -6,19 +6,30 @@ import axios from "axios";
 export const EpisodePage = () => {
   const { episodeId } = useParams();
   const [episode, setEpisode] = useState<ObjectDefault | null>();
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
+    setLoading(true);
     axios({
       method: "GET",
       url: `https://rickandmortyapi.com/api/episode/${episodeId}`
-    }).then(res => {
-      setEpisode(res.data);
-      setLoading(false);
-    });
+    })
+      .then(res => {
+        setEpisode(res.data);
+        setLoading(false);
+      })
+      .catch(e => {
+        if (axios.isCancel(e)) {
+          return;
+        }
+        setError(true);
+        console.log(e);
+      });
   }, []);
 
   if (loading) return <div className="text-center w-full">Loading...</div>;
+  if (error) return <div className="text-red-500">Error!</div>;
 
   return (
     <ul className="flex flex-col gap-5">

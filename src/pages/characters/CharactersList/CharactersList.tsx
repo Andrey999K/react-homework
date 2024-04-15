@@ -14,7 +14,7 @@ export const CharactersList: React.FC = () => {
     error,
     listItems: charactersList,
     lastNodeRef
-  } = useGetListItems<Character>("https://rickandmortyapi.com/api/character");
+  } = useGetListItems<Character>("character");
 
   return (
     <div>
