@@ -1,7 +1,7 @@
 import {useEffect, useState} from "react";
 
-interface FetchState {
-  data: any,
+interface FetchResult<T> {
+  data: T,
   isLoading: boolean,
   error: Error | null,
   refetch: RefetchFunction
@@ -15,10 +15,10 @@ type RefetchParams = {
 
 type RefetchFunction = (params: RefetchParams) => void;
 
-export function useFetch(url: string): FetchState {
+export function useFetch<T>(url: string): FetchResult<T> {
   const [isLoading, setLoading] = useState(true);
   const [data, setData] = useState(null);
-  const [error, setError] = useState();
+  const [error, setError] = useState(null);
 
   const refetch = ({ params }: RefetchParams): void => {
     let newParams = {};
