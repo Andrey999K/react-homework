@@ -1,12 +1,11 @@
-import * as React from "react"
-import { useToggle } from "./hooks/useToggle";
+import React from "react";
+import AppRouter from "./components/ui/AppRouter";
+import AuthProvider from "./context/AuthProvider";
 
 export function App() {
-  const [value, toggle] = useToggle(["blue", "orange", "cyan", "teal"]);
-
   return (
-    <button onClick={() => toggle()}>
-      {value}
-    </button>
+    <AuthProvider>
+      <AppRouter />
+    </AuthProvider>
   );
 }
