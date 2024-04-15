@@ -1,23 +1,23 @@
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 
-interface FetchState {
-  data: any,
-  isLoading: boolean,
-  error: Error | null,
-  refetch: RefetchFunction
+interface FetchResult<T> {
+  data: T | null;
+  isLoading: boolean;
+  error: Error | null;
+  refetch: RefetchFunction;
 }
 
 type RefetchParams = {
   params: {
-    [key: string]: string | number
-  }
+    [key: string]: string | number;
+  };
 };
 
 type RefetchFunction = (params: RefetchParams) => void;
 
-export function useFetch(url: string): FetchState {
+export function useFetch<T>(url: string): FetchResult<T> {
   const [isLoading, setLoading] = useState(true);
-  const [data, setData] = useState(null);
+  const [data, setData] = useState<T | null>(null);
   const [error, setError] = useState(null);
 
   const refetch = ({ params }: RefetchParams): void => {
