@@ -1,15 +1,10 @@
 import React from "react";
 import { convertDataTime } from "../../../utils/convertDataTime";
 import { Link } from "react-router-dom";
+import { ListItemData } from "../../../types";
 
 interface ListItemProps {
-  data: {
-    id: number;
-    image?: string;
-    name: string;
-    created: string;
-    url: string;
-  };
+  data: ListItemData;
   lastNodeRef?: (node: HTMLElement) => void;
 }
 

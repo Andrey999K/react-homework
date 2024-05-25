@@ -69,3 +69,11 @@ export type Episode = {
   episode: string;
   created: string;
 };
+
+export type ListItemData = {
+  id: number;
+  image?: string;
+  name: string;
+  created: string;
+  url: string;
+};
