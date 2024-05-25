@@ -1,10 +1,9 @@
-import React from "react";
-import { useAuth } from "../../../context/AuthProvider";
+import { AuthContextType, useAuth } from "../../../context/AuthProvider";
 import { useNavigate } from "react-router-dom";
 import Button from "../../common/Button";
 
 const AuthStatus = () => {
-  const auth = useAuth();
+  const auth = useAuth() as Required<AuthContextType>;
   const navigate = useNavigate();
 
   const handlerSignOut = () => {

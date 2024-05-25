@@ -20,8 +20,12 @@ a {
 
 body {
   font-family: 'Roboto', sans-serif;
-  max-width: 960px;
-  margin: 1rem auto;
+  height: 100dvh;
+}
+
+#root {
+  height: 100%;
+  max-height: 100%;
 }
 
 h1 {

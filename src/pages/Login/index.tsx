@@ -1,11 +1,10 @@
-import React from "react";
 import SignIn from "../../components/ui/SignIn";
-import { OnSubmit, User } from "../../types";
-import { useAuth } from "../../context/AuthProvider";
+import { User } from "../../types";
+import { AuthContextType, useAuth } from "../../context/AuthProvider";
 import { useLocation, useNavigate } from "react-router-dom";
 
 export const Login = () => {
-  const auth = useAuth();
+  const auth = useAuth() as Required<AuthContextType>;
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from || "/";
@@ -17,7 +16,7 @@ export const Login = () => {
     });
   };
   return (
-    <div className="flex justify-center w-full items-center">
+    <div className="flex justify-center w-full items-center h-full grow">
       <SignIn onSubmit={handlerSubmit} />
     </div>
   );
