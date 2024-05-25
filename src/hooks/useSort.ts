@@ -3,13 +3,21 @@ import { useSearchParams } from "react-router-dom";
 
 enum SortTypes {
   ASC = "ASC",
-  DESC = "DESC",
+  DESC = "DESC"
+}
+
+enum Routes {
+  HOME = "/",
+  CATALOG = "/catalog"
 }
 
 const useSort = (initialState?: SortedDirection) => {
-  const [searchParams, setSearchParams] = useSearchParams({ sort: initialState });
+  const [searchParams, setSearchParams] = useSearchParams({
+    sort: initialState
+  });
   const { ASC, DESC } = SortTypes;
-  const sortByCreated: SortedDirection = searchParams.get("sort") !== DESC ? ASC : DESC;
+  const sortByCreated: SortedDirection =
+    searchParams.get("sort") !== DESC ? ASC : DESC;
   const handlerToggle = () => {
     setSearchParams({ sort: sortByCreated === ASC ? DESC : ASC });
   };

@@ -1,31 +1,20 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import axios from "axios";
+import { useIntersectionObserver } from "./useIntersectionObserver";
+
+const INITIAL_PAGE = 1;
+const base_url = "https://rickandmortyapi.com/api/";
 
 export const useGetListItems = <T>(url: string) => {
-  const [loading, setLoading] = useState<boolean>(true);
+  const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<boolean>(false);
-  const [listItems, setlistItems] = useState<T[]>([]);
+  const [listItems, setListItems] = useState<T[]>([]);
   const [hasMore, setHasMore] = useState<boolean>(false);
-  const [pageNumber, setPageNumber] = useState<number>(1);
-
-  const observer = useRef<IntersectionObserver | null>(null);
-  const lastNodeRef = useCallback(
-    (node: HTMLElement | null) => {
-      if (loading) return;
-      if (observer.current) {
-        observer.current.disconnect();
-      }
-
-      observer.current = new IntersectionObserver(entries => {
-        if (entries[0].isIntersecting && hasMore) {
-          setPageNumber(prevState => prevState + 1);
-        }
-      });
-      if (node) {
-        observer.current.observe(node);
-      }
-    },
-    [loading, hasMore]
+  const [pageNumber, setPageNumber] = useState<number>(INITIAL_PAGE);
+  const { lastNodeRef } = useIntersectionObserver(
+    loading,
+    setPageNumber,
+    hasMore
   );
 
   useEffect(() => {
@@ -33,11 +22,11 @@ export const useGetListItems = <T>(url: string) => {
     setError(false);
     axios({
       method: "GET",
-      url,
+      url: base_url + url,
       params: { page: pageNumber }
     })
       .then(res => {
-        setlistItems(prevState => [...prevState, ...res.data.results]);
+        setListItems(prevState => [...prevState, ...res.data.results]);
         setHasMore(res.data.results.length > 0);
       })
       .catch(e => {
@@ -45,7 +34,7 @@ export const useGetListItems = <T>(url: string) => {
           return;
         }
         setHasMore(false);
-        setError(false);
+        setError(true);
         console.log(e);
       })
       .finally(() => setLoading(false));
