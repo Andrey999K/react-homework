@@ -1,7 +1,7 @@
 import React, { createContext, useContext, useState } from "react";
 import { Callback, User } from "../../types";
 
-type AuthContextType = {
+export type AuthContextType = {
   user: User | null;
   signIn?: (newUser: User, callback: Callback) => void;
   signOut?: (callback: Callback) => void;
@@ -21,7 +21,9 @@ const USER_LS_KEY = "user";
 
 const AuthProvider = ({ children }: AuthProviderProps) => {
   const localStorageUser = localStorage.getItem(USER_LS_KEY);
-  const [user, setUser] = useState<User | null>(localStorageUser ? { email: localStorageUser } : null);
+  const [user, setUser] = useState<User | null>(
+    localStorageUser ? { email: localStorageUser } : null
+  );
   const signIn = (newUser: User, callback: () => void) => {
     console.log(newUser);
     setUser(newUser);

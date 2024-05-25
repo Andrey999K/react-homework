@@ -1,23 +1,53 @@
-import React, { FormEvent, useRef, useState } from "react";
-import { FormProps } from "../../../types";
-import TextField from "../../common/TextField";
-import { useForm } from "../../../hooks/useForm";
-import Button from "../../common/Button";
+import { Button, Form, FormProps, Input } from "antd";
+import { User } from "../../../types";
 
-const initialState = {
-  email: "",
-  password: ""
+type FieldType = {
+  email?: string;
+  password?: string;
 };
 
-const SignIn = ({ onSubmit }: FormProps) => {
-  const { formElement, handlerChange, handlerSubmit } = useForm(initialState, onSubmit);
+export interface SignInProps {
+  onSubmit: (user: User) => void;
+}
+
+const SignIn = ({ onSubmit }: SignInProps) => {
+  const [form] = Form.useForm();
+
+  const handlerFinish: FormProps<User>["onFinish"] = values => {
+    if (values.email && values.password) {
+      onSubmit(values);
+      form.resetFields();
+    }
+  };
 
   return (
-    <form ref={formElement} onSubmit={handlerSubmit} onChange={handlerChange} className="form">
-      <TextField type="email" name="email" placeholder="email" label="Email" />
-      <TextField type="password" name="password" placeholder="password" label="Password" />
-      <Button>Войти</Button>
-    </form>
+    <Form
+      form={form}
+      onFinish={handlerFinish}
+      className="flex flex-col w-full max-w-96 mt-[-20rem]"
+    >
+      <Form.Item<FieldType>
+        label="Email"
+        name="email"
+        rules={[{ required: true, message: "Please input your email!" }]}
+      >
+        <Input placeholder="Email" />
+      </Form.Item>
+
+      <Form.Item<FieldType>
+        label="Password"
+        name="password"
+        rules={[{ required: true, message: "Please input your password!" }]}
+      >
+        <Input.Password placeholder="Password" />
+      </Form.Item>
+
+      <Form.Item>
+        <Button type="primary" htmlType="submit" className="w-full">
+          Войти
+        </Button>
+      </Form.Item>
+    </Form>
   );
 };
 
