@@ -13,7 +13,6 @@ export const EpisodesList = () => {
   const { sortByCreated, handlerToggle } = useSort("ASC");
   const {
     loading,
-    error,
     listItems: episodes,
     lastNodeRef
   } = useGetListItems<Episode>("https://rickandmortyapi.com/api/episode");
@@ -27,8 +26,6 @@ export const EpisodesList = () => {
     }
   }, [sortByCreated]);
 
-  console.log(sortOrderCreated);
-
   const handlerChange: OnChange = (_pagination, _filters, sorter) => {
     if ("field" in sorter && sorter.field === "created") {
       handlerToggle();
@@ -39,11 +36,24 @@ export const EpisodesList = () => {
     {
       title: "Name",
       dataIndex: "name",
-      render: (_: any, { id, name }: Episode) => (
-        <Link to={`/episodes/${id}`} className="w-full block">
-          {name}
-        </Link>
-      )
+      render: (_: any, { id, name }: Episode, index: number) => {
+        if (index === episodes.length - 1) {
+          return (
+            <Link
+              ref={lastNodeRef}
+              to={`/episodes/${id}`}
+              className="w-full block"
+            >
+              {name}
+            </Link>
+          );
+        }
+        return (
+          <Link to={`/episodes/${id}`} className="w-full block">
+            {name}
+          </Link>
+        );
+      }
     },
     {
       title: "Created",
@@ -60,6 +70,7 @@ export const EpisodesList = () => {
       )
     }
   ];
+
   return (
     <div>
       {loading && (
