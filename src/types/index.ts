@@ -48,6 +48,16 @@ export type Character = {
   created: string;
 };
 
+export type Location = {
+  created: string;
+  dimension: string;
+  id: number;
+  name: string;
+  residents: string[];
+  type: string;
+  url: string;
+};
+
 export type DateTime = Date | number | bigint;
 
 export type SortedDirection = "ASC" | "DESC";
