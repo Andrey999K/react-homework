@@ -1,4 +1,5 @@
 import React from "react";
+import { TableProps } from "antd";
 
 export interface DataItem {
   id: number;
@@ -73,3 +74,5 @@ export type ListItemData = {
   created: string;
   url: string;
 };
+
+export type OnChangeTable<T> = NonNullable<TableProps<T>["onChange"]>;

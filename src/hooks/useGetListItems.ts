@@ -26,8 +26,10 @@ export const useGetListItems = <T>(url: string) => {
       params: { page: pageNumber }
     })
       .then(res => {
-        setListItems(prevState => [...prevState, ...res.data.results]);
-        setHasMore(res.data.results.length > 0);
+        setTimeout(() => {
+          setListItems(prevState => [...prevState, ...res.data.results]);
+          setHasMore(res.data.results.length > 0);
+        }, 1000);
       })
       .catch(e => {
         if (axios.isCancel(e)) {
@@ -37,7 +39,10 @@ export const useGetListItems = <T>(url: string) => {
         setError(true);
         console.log(e);
       })
-      .finally(() => setLoading(false));
+      .finally(() => {
+        setTimeout(() => setLoading(false), 1000);
+        // setLoading(false);
+      });
   }, [pageNumber]);
 
   return {

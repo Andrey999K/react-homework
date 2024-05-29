@@ -2,12 +2,10 @@ import { Link } from "react-router-dom";
 import useSort from "../../../hooks/useSort";
 import { convertDataTime } from "../../../utils/convertDataTime";
 import { useGetListItems } from "../../../hooks/useGetListItems";
-import { Episode } from "../../../types";
-import { Button, Spin, Table, TableProps } from "antd";
+import { Episode, OnChangeTable } from "../../../types";
+import { Button, Spin, Table } from "antd";
 import { useMemo } from "react";
 import { SortOrder } from "antd/es/table/interface";
-
-type OnChange = NonNullable<TableProps<Episode>["onChange"]>;
 
 export const EpisodesList = () => {
   const { sortByCreated, handlerToggle } = useSort("ASC");
@@ -26,7 +24,11 @@ export const EpisodesList = () => {
     }
   }, [sortByCreated]);
 
-  const handlerChange: OnChange = (_pagination, _filters, sorter) => {
+  const handlerChange: OnChangeTable<Episode> = (
+    _pagination,
+    _filters,
+    sorter
+  ) => {
     if ("field" in sorter && sorter.field === "created") {
       handlerToggle();
     }
@@ -74,7 +76,7 @@ export const EpisodesList = () => {
   return (
     <div>
       {loading && (
-        <div className="fixed inset-0 bg-white/70 flex justify-center items-center">
+        <div className="fixed inset-0 bg-white/70 flex justify-center items-center z-[9999]">
           <Spin size="large" />
         </div>
       )}
