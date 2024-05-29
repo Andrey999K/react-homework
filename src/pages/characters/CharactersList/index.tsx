@@ -1,11 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { convertDataTime } from "../../../utils/convertDataTime";
-import Button from "../../../components/common/Button";
 import useSort from "../../../hooks/useSort";
 import sortByDateCreated from "../../../utils/sortByDateCreated";
 import { useGetListItems } from "../../../hooks/useGetListItems";
 import { Character } from "../../../types";
+import { Button } from "antd";
 
 export const CharactersList: React.FC = () => {
   const { sortByCreated, handlerToggle } = useSort();
@@ -18,10 +18,10 @@ export const CharactersList: React.FC = () => {
 
   return (
     <div>
-      <div className="mb-5">
-        <Button onClick={handlerToggle}>{sortByCreated}</Button>
-      </div>
-      <ul className="flex flex-col gap-5">
+      <Button type="primary" onClick={handlerToggle}>
+        {sortByCreated}
+      </Button>
+      <ul className="flex flex-col gap-5 mt-5">
         {sortByDateCreated(charactersList, sortByCreated).map((item, index) => {
           if (charactersList.length - 3 === index + 1) {
             return (

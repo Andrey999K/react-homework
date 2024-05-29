@@ -1,8 +1,7 @@
-import React, { lazy } from "react";
-import { Outlet, Route, Routes, useLocation } from "react-router-dom";
+import { lazy } from "react";
+import { Route, Routes } from "react-router-dom";
 import MainLayout from "../../../layouts/MainLayout";
 import PrivateRoute from "../PrivateRoute";
-import ErrorBoundary from "../ErrorBoundary";
 
 const Home = lazy(() =>
   import("../../../pages/Home").then(module => ({ default: module.Home }))
