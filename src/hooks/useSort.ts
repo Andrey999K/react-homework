@@ -1,14 +1,10 @@
 import { SortedDirection } from "../types";
 import { useSearchParams } from "react-router-dom";
+import { useEffect } from "react";
 
 enum SortTypes {
   ASC = "ASC",
   DESC = "DESC"
-}
-
-enum Routes {
-  HOME = "/",
-  CATALOG = "/catalog"
 }
 
 const useSort = (initialState?: SortedDirection) => {
@@ -21,6 +17,9 @@ const useSort = (initialState?: SortedDirection) => {
   const handlerToggle = () => {
     setSearchParams({ sort: sortByCreated === ASC ? DESC : ASC });
   };
+  useEffect(() => {
+    setSearchParams({ sort: sortByCreated });
+  }, []);
   return { sortByCreated, handlerToggle };
 };
 

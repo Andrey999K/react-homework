@@ -1,6 +1,6 @@
 import { AuthContextType, useAuth } from "../../../context/AuthProvider";
 import { useNavigate } from "react-router-dom";
-import Button from "../../common/Button";
+import { Button } from "antd";
 
 const AuthStatus = () => {
   const auth = useAuth() as Required<AuthContextType>;
@@ -18,7 +18,9 @@ const AuthStatus = () => {
   return (
     <div className="flex items-center gap-2">
       <span>Welcome user {auth.user.email}</span>
-      <Button onClick={handlerSignOut}>SignOut</Button>
+      <Button type="primary" onClick={handlerSignOut}>
+        SignOut
+      </Button>
     </div>
   );
 };
