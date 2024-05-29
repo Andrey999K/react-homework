@@ -1,13 +1,10 @@
-import React from "react";
-import locations from "../../../mock/locations.json";
 import { Link } from "react-router-dom";
 import useSort from "../../../hooks/useSort";
 import sortByDateCreated from "../../../utils/sortByDateCreated";
-import Button from "../../../components/common/Button";
 import { convertDataTime } from "../../../utils/convertDataTime";
 import { useGetListItems } from "../../../hooks/useGetListItems";
 import { Character } from "../../../types";
-import { ListItem } from "../../../components/common/ListItem";
+import { Button } from "antd";
 
 export const LocationsList = () => {
   const { sortByCreated, handlerToggle } = useSort();
@@ -17,19 +14,41 @@ export const LocationsList = () => {
     listItems: locations,
     lastNodeRef
   } = useGetListItems<Character>("location");
-  console.log(locations);
   return (
     <div>
-      <Button onClick={handlerToggle}>{sortByCreated}</Button>
+      <Button type="primary" onClick={handlerToggle}>
+        {sortByCreated}
+      </Button>
       <ul className="flex flex-col gap-5 mt-5">
         {sortByDateCreated(locations, sortByCreated).map((item, index) => {
-          const data = { ...item, url: `/locations/${item.id}` };
           if (locations.length - 3 === index + 1) {
             return (
-              <ListItem data={data} lastNodeRef={lastNodeRef} key={item.id} />
+              <li ref={lastNodeRef} key={item.id}>
+                <Link
+                  to={`/locations/${item.id}`}
+                  className="flex items-center gap-5"
+                >
+                  <span className="w-full max-w-[300px]">{item.name}</span>
+                  <span className="w-full max-w-[300px]">
+                    {convertDataTime(item.created)}
+                  </span>
+                </Link>
+              </li>
             );
           } else {
-            return <ListItem data={data} key={item.id} />;
+            return (
+              <li key={item.id}>
+                <Link
+                  to={`/locations/${item.id}`}
+                  className="flex items-center gap-5"
+                >
+                  <span className="w-full max-w-[300px]">{item.name}</span>
+                  <span className="w-full max-w-[300px]">
+                    {convertDataTime(item.created)}
+                  </span>
+                </Link>
+              </li>
+            );
           }
         })}
         {loading && <div className="text-green-500">Loading...</div>}
