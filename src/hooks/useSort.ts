@@ -9,7 +9,7 @@ enum SortTypes {
 
 const useSort = (initialState?: SortedDirection) => {
   const [searchParams, setSearchParams] = useSearchParams({
-    sort: initialState
+    sort: initialState || SortTypes.ASC
   });
   const { ASC, DESC } = SortTypes;
   const sortByCreated: SortedDirection =
