@@ -1,6 +1,10 @@
-import { FormProps } from "../../../types";
+import { OnSubmit } from "../../../types";
 import TextField from "../../common/TextField";
 import { useForm } from "../../../hooks/useForm";
+
+export interface SignUpProps {
+  onSubmit: OnSubmit;
+}
 
 const initialState = {
   name: "",
@@ -11,7 +15,7 @@ const initialState = {
   repeatPassword: ""
 };
 
-const SignUp = ({ onSubmit }: FormProps) => {
+const SignUp = ({ onSubmit }: SignUpProps) => {
   const { formElement, handlerChange, handlerSubmit } = useForm(
     initialState,
     onSubmit

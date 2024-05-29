@@ -15,7 +15,7 @@ export const EpisodesList = () => {
     loading,
     listItems: episodes,
     lastNodeRef
-  } = useGetListItems<Episode>("https://rickandmortyapi.com/api/episode");
+  } = useGetListItems<Episode>("episode");
 
   const sortOrderCreated: SortOrder = useMemo(() => {
     switch (sortByCreated) {

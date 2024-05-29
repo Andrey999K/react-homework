@@ -14,7 +14,6 @@ export const CharactersList: React.FC = () => {
     listItems: charactersList,
     lastNodeRef
   } = useGetListItems<Character>("character");
-
   return (
     <div>
       <Button onClick={handlerToggle}>{sortByCreated}</Button>

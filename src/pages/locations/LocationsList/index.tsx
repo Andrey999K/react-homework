@@ -3,17 +3,17 @@ import useSort from "../../../hooks/useSort";
 import sortByDateCreated from "../../../utils/sortByDateCreated";
 import { convertDataTime } from "../../../utils/convertDataTime";
 import { useGetListItems } from "../../../hooks/useGetListItems";
-import { Character } from "../../../types";
+import { Location } from "../../../types";
 import { Button } from "antd";
 
 export const LocationsList = () => {
-  const { sortByCreated, handlerToggle } = useSort();
+  const { sortByCreated, handlerToggle } = useSort("ASC");
   const {
     loading,
-    error,
     listItems: locations,
     lastNodeRef
-  } = useGetListItems<Character>("https://rickandmortyapi.com/api/location");
+  } = useGetListItems<Location>("location");
+  console.log(locations);
   return (
     <div>
       <Button type="primary" onClick={handlerToggle}>
@@ -52,7 +52,6 @@ export const LocationsList = () => {
           }
         })}
         {loading && <div className="text-green-500">Loading...</div>}
-        {error && <div className="text-red-500">Error!</div>}
       </ul>
     </div>
   );
