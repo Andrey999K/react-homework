@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { ObjectDefault } from "../../../types";
 import axios from "axios";
+import { Loader } from "../../../components/common/Loader";
 
 export const CharacterPage = () => {
   const [character, setCharacter] = useState<ObjectDefault | null>();
@@ -27,8 +28,7 @@ export const CharacterPage = () => {
       });
   }, []);
 
-  if (loading || !character)
-    return <div className="text-center w-full">Loading...</div>;
+  if (loading || !character) return <Loader />;
   if (error) return <div className="text-red-500">Error!</div>;
 
   return (

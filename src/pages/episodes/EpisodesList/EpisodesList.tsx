@@ -3,9 +3,10 @@ import useSort from "../../../hooks/useSort";
 import { convertDataTime } from "../../../utils/convertDataTime";
 import { useGetListItems } from "../../../hooks/useGetListItems";
 import { Episode, OnChangeTable } from "../../../types";
-import { Button, Spin, Table } from "antd";
+import { Button, Table } from "antd";
 import { useMemo } from "react";
 import { SortOrder } from "antd/es/table/interface";
+import { Loader } from "../../../components/common/Loader";
 
 export const EpisodesList = () => {
   const { sortByCreated, handlerToggle } = useSort("ASC");
@@ -75,11 +76,7 @@ export const EpisodesList = () => {
 
   return (
     <div>
-      {loading && (
-        <div className="fixed inset-0 bg-white/70 flex justify-center items-center z-[9999]">
-          <Spin size="large" />
-        </div>
-      )}
+      {loading && <Loader />}
       <Button type="primary" onClick={handlerToggle}>
         {sortByCreated}
       </Button>

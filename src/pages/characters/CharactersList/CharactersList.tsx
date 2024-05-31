@@ -4,8 +4,9 @@ import { convertDataTime } from "../../../utils/convertDataTime";
 import useSort from "../../../hooks/useSort";
 import { useGetListItems } from "../../../hooks/useGetListItems";
 import { Character, OnChangeTable } from "../../../types";
-import { Button, Spin, Table } from "antd";
+import { Button, Table } from "antd";
 import { SortOrder } from "antd/es/table/interface";
+import { Loader } from "../../../components/common/Loader";
 
 export const CharactersList: React.FC = () => {
   const { sortByCreated, handlerToggle } = useSort();
@@ -88,11 +89,7 @@ export const CharactersList: React.FC = () => {
 
   return (
     <div>
-      {loading && (
-        <div className="fixed inset-0 bg-white/70 flex justify-center items-center z-[9999]">
-          <Spin size="large" />
-        </div>
-      )}
+      {loading && <Loader />}
       <Button type="primary" onClick={handlerToggle}>
         {sortByCreated}
       </Button>

@@ -4,14 +4,13 @@ import { Episode, ObjectDefault } from "../../../types";
 import axios from "axios";
 import { Table } from "antd";
 import { convertDataTime } from "../../../utils/convertDataTime.ts";
+import { Loader } from "../../../components/common/Loader";
 
 export const EpisodePage = () => {
   const { episodeId } = useParams();
   const [episode, setEpisode] = useState<ObjectDefault | null>();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
-
-  console.log(episode);
 
   useEffect(() => {
     setLoading(true);
@@ -32,8 +31,7 @@ export const EpisodePage = () => {
       });
   }, []);
 
-  if (loading || !episode)
-    return <div className="text-center w-full">Loading...</div>;
+  if (loading || !episode) return <Loader />;
   if (error) return <div className="text-red-500">Error!</div>;
 
   const columns = Object.keys(episode)

@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { ObjectDefault } from "../../../types";
 import axios from "axios";
+import { Loader } from "../../../components/common/Loader";
 
 export const LocationPage = () => {
   const { locationId } = useParams();
@@ -28,8 +29,7 @@ export const LocationPage = () => {
       });
   }, []);
 
-  if (loading || !location)
-    return <div className="text-center w-full">Loading...</div>;
+  if (loading || !location) return <Loader />;
   if (error) return <div className="text-red-500">Error!</div>;
 
   return (
