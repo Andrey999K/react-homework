@@ -3,12 +3,15 @@ import { useParams } from "react-router-dom";
 import { ObjectDefault } from "../../../types";
 import axios from "axios";
 import { Loader } from "../../../components/common/Loader";
+import { Card, Flex, Typography } from "antd";
+import { convertDataTime } from "../../../utils/convertDataTime.ts";
 
 export const CharacterPage = () => {
   const [character, setCharacter] = useState<ObjectDefault | null>();
   const { characterId } = useParams();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
+
   useEffect(() => {
     setLoading(true);
     axios({
@@ -32,23 +35,35 @@ export const CharacterPage = () => {
   if (error) return <div className="text-red-500">Error!</div>;
 
   return (
-    <div className="flex mt-5 gap-5">
-      <img
-        className="w-full max-w-[300px]"
-        src={character.image}
-        alt={character.name}
-      />
-      <ul className="flex flex-col gap-5">
-        {Object.keys(character).map(field => {
-          if (field !== "image" && typeof character[field] === "string") {
-            return (
-              <li key={field}>
-                <b>{field}:</b> <span>{character[field]}</span>
-              </li>
-            );
-          }
-        })}
-      </ul>
-    </div>
+    <>
+      <Card hoverable styles={{ body: { padding: 0, overflow: "hidden" } }}>
+        <Flex>
+          <img alt={character.name} src={character.image} />
+
+          <Flex vertical style={{ padding: 32 }}>
+            <Typography.Title level={3}>{character.name}</Typography.Title>
+            <ul className="flex flex-col gap-2">
+              {Object.keys(character).map(field => {
+                if (field !== "image" && typeof character[field] === "string") {
+                  if (field === "created") {
+                    return (
+                      <li key={field}>
+                        <b>{field}:</b>{" "}
+                        <span>{convertDataTime(character[field])}</span>
+                      </li>
+                    );
+                  }
+                  return (
+                    <li key={field}>
+                      <b>{field}:</b> <span>{character[field]}</span>
+                    </li>
+                  );
+                }
+              })}
+            </ul>
+          </Flex>
+        </Flex>
+      </Card>
+    </>
   );
 };
