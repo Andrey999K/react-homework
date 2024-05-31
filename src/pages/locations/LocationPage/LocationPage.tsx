@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { ObjectDefault } from "../../../types";
+import { Location, ObjectDefault } from "../../../types";
 import axios from "axios";
 import { Loader } from "../../../components/common/Loader";
+import { convertDataTime } from "../../../utils/convertDataTime.ts";
+import { Table } from "antd";
 
 export const LocationPage = () => {
   const { locationId } = useParams();
@@ -32,17 +34,29 @@ export const LocationPage = () => {
   if (loading || !location) return <Loader />;
   if (error) return <div className="text-red-500">Error!</div>;
 
+  const columns = Object.keys(location)
+    .filter(field => typeof location[field] === "string")
+    .map(field => {
+      if (field === "created") {
+        return {
+          title: field,
+          dataIndex: field,
+          render: (_: any, { created }: Location) => (
+            <>{convertDataTime(created)}</>
+          )
+        };
+      }
+      return { title: field, dataIndex: field };
+    });
+
   return (
-    <ul className="flex flex-col gap-5">
-      {Object.keys(location).map(field => {
-        if (field !== "image" && typeof location[field] === "string") {
-          return (
-            <li key={field}>
-              <b>{field}: </b> <span>{location[field]}</span>
-            </li>
-          );
-        }
-      })}
+    <ul className="flex flex-col gap-8 mt-8">
+      <h2 className="font-bold">Локация {location.name}</h2>
+      <Table
+        columns={columns}
+        dataSource={[location as Location]}
+        pagination={false}
+      />
     </ul>
   );
 };
