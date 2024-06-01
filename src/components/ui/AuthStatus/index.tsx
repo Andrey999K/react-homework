@@ -1,4 +1,4 @@
-import { AuthContextType, useAuth } from "../../../context/AuthProvider";
+import { AuthContextType, useAuth } from "../../../app/providers/AuthProvider";
 import { useNavigate } from "react-router-dom";
 import { Button } from "antd";
 

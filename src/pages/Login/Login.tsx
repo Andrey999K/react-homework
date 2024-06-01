@@ -1,6 +1,6 @@
 import SignIn from "../../components/ui/SignIn";
 import { User } from "../../types";
-import { AuthContextType, useAuth } from "../../context/AuthProvider";
+import { AuthContextType, useAuth } from "../../app/providers/AuthProvider";
 import { useLocation, useNavigate } from "react-router-dom";
 
 export const Login = () => {
