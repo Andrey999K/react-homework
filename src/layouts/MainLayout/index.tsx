@@ -1,7 +1,7 @@
 import { Suspense } from "react";
 import Navigation from "../../components/ui/Navigation";
 import { Outlet, useLocation } from "react-router-dom";
-import AuthStatus from "../../components/ui/AuthStatus";
+import AuthStatus from "../../entities/AuthStatus";
 import ErrorBoundary from "../../components/ui/ErrorBoundary";
 
 const MainLayout = () => {
