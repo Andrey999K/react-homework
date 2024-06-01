@@ -1,4 +1,4 @@
-import SignIn from "../../components/ui/SignIn";
+import SignIn from "../../features/SignIn";
 import { User } from "../../types";
 import { AuthContextType, useAuth } from "../../app/providers/AuthProvider";
 import { useLocation, useNavigate } from "react-router-dom";

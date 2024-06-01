@@ -1,11 +1,6 @@
 import React from "react";
 import { TableProps } from "antd";
 
-export interface DataItem {
-  id: number;
-  title: string;
-}
-
 export type OnSubmit = (form: { [field: string]: string }) => void;
 
 export interface InputProps {
@@ -75,14 +70,6 @@ export type Episode = {
   air_date: string;
   episode: string;
   created: string;
-};
-
-export type ListItemData = {
-  id: number;
-  image?: string;
-  name: string;
-  created: string;
-  url: string;
 };
 
 export type OnChangeTable<T> = NonNullable<TableProps<T>["onChange"]>;

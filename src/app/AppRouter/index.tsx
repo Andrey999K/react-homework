@@ -1,15 +1,15 @@
 import { Route, Routes } from "react-router-dom";
-import MainLayout from "../../../layouts/MainLayout";
-import PrivateRoute from "../PrivateRoute";
-import { CharacterPage } from "../../../pages/characters/CharacterPage/CharacterPage.lazy";
-import { CharactersList } from "../../../pages/characters/CharactersList/CharactersList.lazy";
-import { Home } from "../../../pages/Home/Home.lazy";
-import { NotFound } from "../../../pages/NotFound/NotFound.lazy";
-import { EpisodesList } from "../../../pages/episodes/EpisodesList/EpisodesList.lazy";
-import { EpisodePage } from "../../../pages/episodes/EpisodePage/EpisodePage.lazy";
-import { LocationsList } from "../../../pages/locations/LocationsList/LocationsList.lazy";
-import { LocationPage } from "../../../pages/locations/LocationPage/LocationPage.lazy";
-import { Login } from "../../../pages/Login/Login.lazy";
+import MainLayout from "../../layouts/MainLayout";
+import PrivateRoute from "../../features/PrivateRoute";
+import { CharacterPage } from "../../pages/characters/CharacterPage/CharacterPage.lazy.tsx";
+import { CharactersList } from "../../pages/characters/CharactersList/CharactersList.lazy.tsx";
+import { Home } from "../../pages/Home/Home.lazy.tsx";
+import { NotFound } from "../../pages/NotFound/NotFound.lazy.tsx";
+import { EpisodesList } from "../../pages/episodes/EpisodesList/EpisodesList.lazy.tsx";
+import { EpisodePage } from "../../pages/episodes/EpisodePage/EpisodePage.lazy.tsx";
+import { LocationsList } from "../../pages/locations/LocationsList/LocationsList.lazy.tsx";
+import { LocationPage } from "../../pages/locations/LocationPage/LocationPage.lazy.tsx";
+import { Login } from "../../pages/Login/Login.lazy.tsx";
 
 const AppRouter = () => {
   return (

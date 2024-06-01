@@ -1,5 +1,4 @@
-import React from "react";
-import { useAuth } from "../../../app/providers/AuthProvider";
+import { useAuth } from "../../app/providers/AuthProvider";
 import { Navigate, Outlet, useLocation } from "react-router-dom";
 
 const PrivateRoute = () => {

@@ -6,7 +6,7 @@ import { Episode, OnChangeTable } from "../../../types";
 import { Button, Table } from "antd";
 import { useMemo } from "react";
 import { SortOrder } from "antd/es/table/interface";
-import { Loader } from "../../../components/common/Loader";
+import { Loader } from "../../../shared/Loader";
 
 export const EpisodesList = () => {
   const { sortByCreated, handlerToggle } = useSort("ASC");

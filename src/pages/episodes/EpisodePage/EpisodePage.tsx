@@ -4,7 +4,7 @@ import { Episode, ObjectDefault } from "../../../types";
 import axios from "axios";
 import { Table } from "antd";
 import { convertDataTime } from "../../../utils/convertDataTime.ts";
-import { Loader } from "../../../components/common/Loader";
+import { Loader } from "../../../shared/Loader";
 
 export const EpisodePage = () => {
   const { episodeId } = useParams();

@@ -6,7 +6,7 @@ import { useGetListItems } from "../../../hooks/useGetListItems";
 import { Character, OnChangeTable } from "../../../types";
 import { Button, Table } from "antd";
 import { SortOrder } from "antd/es/table/interface";
-import { Loader } from "../../../components/common/Loader";
+import { Loader } from "../../../shared/Loader";
 
 export const CharactersList: React.FC = () => {
   const { sortByCreated, handlerToggle } = useSort();

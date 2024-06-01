@@ -6,7 +6,7 @@ import { SortOrder } from "antd/es/table/interface";
 import { useMemo } from "react";
 import { Link } from "react-router-dom";
 import { convertDataTime } from "../../../utils/convertDataTime.ts";
-import { Loader } from "../../../components/common/Loader";
+import { Loader } from "../../../shared/Loader";
 
 export const LocationsList = () => {
   const { sortByCreated, handlerToggle } = useSort("ASC");

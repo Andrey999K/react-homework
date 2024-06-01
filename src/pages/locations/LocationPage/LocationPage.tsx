@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Location, ObjectDefault } from "../../../types";
 import axios from "axios";
-import { Loader } from "../../../components/common/Loader";
+import { Loader } from "../../../shared/Loader";
 import { convertDataTime } from "../../../utils/convertDataTime.ts";
 import { Table } from "antd";
 
