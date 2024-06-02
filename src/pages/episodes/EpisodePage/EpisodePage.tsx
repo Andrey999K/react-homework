@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { Episode, ObjectDefault } from "../../../types";
+import { Episode, ObjectDefault } from "../../../shared/types";
 import axios from "axios";
 import { Table } from "antd";
-import { convertDataTime } from "../../../utils/convertDataTime.ts";
-import { Loader } from "../../../shared/Loader";
+import { convertDataTime } from "../../../shared/utils/convertDataTime.ts";
+import { Loader } from "../../../shared/ui/Loader";
 
 export const EpisodePage = () => {
   const { episodeId } = useParams();

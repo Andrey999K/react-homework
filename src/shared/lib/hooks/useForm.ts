@@ -1,5 +1,5 @@
 import { FormEvent, useRef, useState } from "react";
-import { FormState, OnSubmit } from "../types";
+import { FormState, OnSubmit } from "../../types";
 
 export function useForm(initialState: FormState, onSubmit?: OnSubmit) {
   const [form, setForm] = useState(initialState);

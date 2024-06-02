@@ -1,6 +1,6 @@
-import { useWindowEvent } from "./useWindowEvent";
+import { useWindowEvent } from "./useWindowEvent.ts";
 import { useState } from "react";
-import { useThrottle } from "./useThrottle";
+import { useThrottle } from "./useThrottle.ts";
 
 export function useViewportSize() {
   const [size, setSize] = useState({

@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { ObjectDefault } from "../../../types";
+import { ObjectDefault } from "../../../shared/types";
 import axios from "axios";
-import { Loader } from "../../../shared/Loader";
+import { Loader } from "../../../shared/ui/Loader";
 import { Card, Flex, Typography } from "antd";
-import { convertDataTime } from "../../../utils/convertDataTime.ts";
+import { convertDataTime } from "../../../shared/utils/convertDataTime.ts";
 
 export const CharacterPage = () => {
   const [character, setCharacter] = useState<ObjectDefault | null>();

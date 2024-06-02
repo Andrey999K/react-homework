@@ -1,12 +1,12 @@
 import React, { useMemo } from "react";
 import { Link } from "react-router-dom";
-import { convertDataTime } from "../../../utils/convertDataTime";
-import useSort from "../../../hooks/useSort";
-import { useGetListItems } from "../../../hooks/useGetListItems";
-import { Character, OnChangeTable } from "../../../types";
+import { convertDataTime } from "../../../shared/utils/convertDataTime";
+import useSort from "../../../shared/lib/hooks/useSort";
+import { useGetListItems } from "../../../shared/lib/hooks/useGetListItems";
+import { Character, OnChangeTable } from "../../../shared/types";
 import { Button, Table } from "antd";
 import { SortOrder } from "antd/es/table/interface";
-import { Loader } from "../../../shared/Loader";
+import { Loader } from "../../../shared/ui/Loader";
 
 export const CharactersList: React.FC = () => {
   const { sortByCreated, handlerToggle } = useSort();

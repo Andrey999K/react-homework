@@ -1,5 +1,5 @@
 import React, { createContext, useContext, useState } from "react";
-import { Callback, User } from "../../../types";
+import { Callback, User } from "../../../shared/types";
 
 export type AuthContextType = {
   user: User | null;

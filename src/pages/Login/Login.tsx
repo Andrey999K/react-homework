@@ -1,5 +1,5 @@
 import SignIn from "../../features/SignIn";
-import { User } from "../../types";
+import { User } from "../../shared/types";
 import { AuthContextType, useAuth } from "../../app/providers/AuthProvider";
 import { useLocation, useNavigate } from "react-router-dom";
 

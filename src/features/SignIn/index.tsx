@@ -1,5 +1,5 @@
 import { Button, Form, FormProps, Input } from "antd";
-import { User } from "../../types";
+import { User } from "../../shared/types";
 
 type FieldType = {
   email?: string;

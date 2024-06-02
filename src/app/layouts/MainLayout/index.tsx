@@ -1,8 +1,8 @@
 import { Suspense } from "react";
-import Navigation from "../../app/Navigation";
+import Navigation from "../../Navigation";
 import { Outlet, useLocation } from "react-router-dom";
-import AuthStatus from "../../entities/AuthStatus";
-import ErrorBoundary from "../../shared/ErrorBoundary";
+import AuthStatus from "../../../entities/AuthStatus";
+import ErrorBoundary from "../../../shared/ui/ErrorBoundary";
 
 const MainLayout = () => {
   const location = useLocation();

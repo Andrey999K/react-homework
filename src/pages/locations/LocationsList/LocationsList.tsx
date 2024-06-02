@@ -1,12 +1,12 @@
-import useSort from "../../../hooks/useSort";
-import { useGetListItems } from "../../../hooks/useGetListItems";
-import { Location, OnChangeTable } from "../../../types";
+import useSort from "../../../shared/lib/hooks/useSort";
+import { useGetListItems } from "../../../shared/lib/hooks/useGetListItems";
+import { Location, OnChangeTable } from "../../../shared/types";
 import { Button, Table } from "antd";
 import { SortOrder } from "antd/es/table/interface";
 import { useMemo } from "react";
 import { Link } from "react-router-dom";
-import { convertDataTime } from "../../../utils/convertDataTime.ts";
-import { Loader } from "../../../shared/Loader";
+import { convertDataTime } from "../../../shared/utils/convertDataTime.ts";
+import { Loader } from "../../../shared/ui/Loader";
 
 export const LocationsList = () => {
   const { sortByCreated, handlerToggle } = useSort("ASC");

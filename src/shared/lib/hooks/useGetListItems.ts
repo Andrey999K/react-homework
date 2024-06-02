@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { useIntersectionObserver } from "./useIntersectionObserver";
+import { useIntersectionObserver } from "./useIntersectionObserver.ts";
 
 const INITIAL_PAGE = 1;
 const base_url = "https://rickandmortyapi.com/api/";

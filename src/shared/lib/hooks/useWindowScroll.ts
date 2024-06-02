@@ -1,4 +1,4 @@
-import { useWindowEvent } from "./useWindowEvent";
+import { useWindowEvent } from "./useWindowEvent.ts";
 import { useEffect, useState } from "react";
 
 interface ScrollResult {

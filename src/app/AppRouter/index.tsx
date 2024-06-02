@@ -1,5 +1,5 @@
 import { Route, Routes } from "react-router-dom";
-import MainLayout from "../../layouts/MainLayout";
+import MainLayout from "../layouts/MainLayout";
 import PrivateRoute from "../../features/PrivateRoute";
 import { CharacterPage } from "../../pages/characters/CharacterPage/CharacterPage.lazy.tsx";
 import { CharactersList } from "../../pages/characters/CharactersList/CharactersList.lazy.tsx";

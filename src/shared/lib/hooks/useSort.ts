@@ -1,4 +1,4 @@
-import { SortedDirection } from "../types";
+import { SortedDirection } from "../../types";
 import { useSearchParams } from "react-router-dom";
 import { useEffect } from "react";
 

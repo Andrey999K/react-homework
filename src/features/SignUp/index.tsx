@@ -1,6 +1,6 @@
-import { OnSubmit } from "../../types";
-import TextField from "../../shared/TextField";
-import { useForm } from "../../hooks/useForm.ts";
+import { OnSubmit } from "../../shared/types";
+import TextField from "../../shared/ui/TextField";
+import { useForm } from "../../shared/lib/hooks/useForm.ts";
 
 const initialState = {
   name: "",

@@ -1,12 +1,12 @@
 import { Link } from "react-router-dom";
-import useSort from "../../../hooks/useSort";
-import { convertDataTime } from "../../../utils/convertDataTime";
-import { useGetListItems } from "../../../hooks/useGetListItems";
-import { Episode, OnChangeTable } from "../../../types";
+import useSort from "../../../shared/lib/hooks/useSort";
+import { convertDataTime } from "../../../shared/utils/convertDataTime";
+import { useGetListItems } from "../../../shared/lib/hooks/useGetListItems";
+import { Episode, OnChangeTable } from "../../../shared/types";
 import { Button, Table } from "antd";
 import { useMemo } from "react";
 import { SortOrder } from "antd/es/table/interface";
-import { Loader } from "../../../shared/Loader";
+import { Loader } from "../../../shared/ui/Loader";
 
 export const EpisodesList = () => {
   const { sortByCreated, handlerToggle } = useSort("ASC");
