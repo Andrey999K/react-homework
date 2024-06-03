@@ -1,0 +1,16 @@
+{
+  "name": "React homework",
+  "short_name": "ReactHomework",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#FFE9D2",
+  "theme_color": "#FFE1C4",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/icon.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    }
+  ]
+}
