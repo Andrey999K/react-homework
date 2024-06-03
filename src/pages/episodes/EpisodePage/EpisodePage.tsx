@@ -1,7 +1,10 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { ObjectDefault } from "../../../types";
+import { Episode, ObjectDefault } from "../../../shared/types";
 import axios from "axios";
+import { Table } from "antd";
+import { convertDataTime } from "../../../shared/utils/convertDataTime.ts";
+import { Loader } from "../../../shared/ui/Loader";
 
 export const EpisodePage = () => {
   const { episodeId } = useParams();
@@ -28,22 +31,32 @@ export const EpisodePage = () => {
       });
   }, []);
 
-  if (loading || !episode)
-    return <div className="text-center w-full">Loading...</div>;
+  if (loading || !episode) return <Loader />;
   if (error) return <div className="text-red-500">Error!</div>;
 
+  const columns = Object.keys(episode)
+    .filter(field => typeof episode[field] === "string")
+    .map(field => {
+      if (field === "created") {
+        return {
+          title: field,
+          dataIndex: field,
+          render: (_: any, { created }: Episode) => (
+            <>{convertDataTime(created)}</>
+          )
+        };
+      }
+      return { title: field, dataIndex: field };
+    });
+
   return (
-    <ul className="flex flex-col gap-5">
-      {Object.keys(episode).map(field => {
-        if (typeof episode[field] === "string") {
-          return (
-            <li key={field}>
-              <b>{field}: </b>
-              <span>{episode[field]}</span>
-            </li>
-          );
-        }
-      })}
-    </ul>
+    <div className="flex flex-col gap-8 mt-8">
+      <h2 className="font-bold">Эпизод {episode.name}</h2>
+      <Table
+        columns={columns}
+        dataSource={[episode as Episode]}
+        pagination={false}
+      />
+    </div>
   );
 };

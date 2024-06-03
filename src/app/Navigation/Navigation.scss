@@ -1,0 +1,19 @@
+nav {
+  padding: 15px 0;
+}
+
+.nav {
+  display: flex;
+  justify-content: space-between;
+
+  &__link {
+    font-weight: 600;
+    padding: 15px;
+
+    &.active {
+      color: #015dcb;
+      transition: .2s;
+    }
+  }
+}
+

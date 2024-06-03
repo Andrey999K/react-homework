@@ -1,40 +1,95 @@
-import React from "react";
-import locations from "../../../mock/locations.json";
+import useSort from "../../../shared/lib/hooks/useSort";
+import { useGetListItems } from "../../../shared/lib/hooks/useGetListItems";
+import { Location, OnChangeTable } from "../../../shared/types";
+import { Button, Table } from "antd";
+import { SortOrder } from "antd/es/table/interface";
+import { useMemo } from "react";
 import { Link } from "react-router-dom";
-import useSort from "../../../hooks/useSort";
-import sortByDateCreated from "../../../utils/sortByDateCreated";
-import Button from "../../../components/common/Button";
-import { convertDataTime } from "../../../utils/convertDataTime";
-import { useGetListItems } from "../../../hooks/useGetListItems";
-import { Character } from "../../../types";
-import { ListItem } from "../../../components/common/ListItem";
+import { convertDataTime } from "../../../shared/utils/convertDataTime.ts";
+import { Loader } from "../../../shared/ui/Loader";
 
 export const LocationsList = () => {
-  const { sortByCreated, handlerToggle } = useSort();
+  const { sortByCreated, handlerToggle } = useSort("ASC");
   const {
     loading,
-    error,
     listItems: locations,
     lastNodeRef
-  } = useGetListItems<Character>("location");
-  console.log(locations);
+  } = useGetListItems<Location>("location");
+
+  const sortOrderCreated: SortOrder = useMemo(() => {
+    switch (sortByCreated) {
+      case "ASC":
+        return "ascend";
+      default:
+        return "descend";
+    }
+  }, [sortByCreated]);
+
+  const handlerChange: OnChangeTable<Location> = (
+    _pagination,
+    _filters,
+    sorter
+  ) => {
+    if ("field" in sorter && sorter.field === "created") {
+      handlerToggle();
+    }
+  };
+
+  const columns = [
+    {
+      title: "Name",
+      dataIndex: "name",
+      render: (_: any, { id, name }: Location, index: number) => {
+        if (index === locations.length - 1) {
+          return (
+            <Link
+              ref={lastNodeRef}
+              to={`/locations/${id}`}
+              className="w-full block"
+            >
+              {name}
+            </Link>
+          );
+        }
+        return (
+          <Link to={`/locations/${id}`} className="w-full block">
+            {name}
+          </Link>
+        );
+      }
+    },
+    {
+      title: "Created",
+      dataIndex: "created",
+      sorter: (a: Location, b: Location) => {
+        return (new Date(a.created) as any) - (new Date(b.created) as any);
+      },
+      sortOrder: sortOrderCreated,
+      sortDirections: ["ascend", "descend", "ascend"] as SortOrder[],
+      render: (_: any, { id, created }: Location) => (
+        <Link to={`/locations/${id}`} className="w-full block">
+          {convertDataTime(created)}
+        </Link>
+      )
+    }
+  ];
+
   return (
     <div>
-      <Button onClick={handlerToggle}>{sortByCreated}</Button>
-      <ul className="flex flex-col gap-5 mt-5">
-        {sortByDateCreated(locations, sortByCreated).map((item, index) => {
-          const data = { ...item, url: `/locations/${item.id}` };
-          if (locations.length - 3 === index + 1) {
-            return (
-              <ListItem data={data} lastNodeRef={lastNodeRef} key={item.id} />
-            );
-          } else {
-            return <ListItem data={data} key={item.id} />;
-          }
-        })}
-        {loading && <div className="text-green-500">Loading...</div>}
-        {error && <div className="text-red-500">Error!</div>}
-      </ul>
+      {loading && <Loader />}
+      <Button type="primary" onClick={handlerToggle}>
+        {sortByCreated}
+      </Button>
+      {!!locations.length && (
+        <Table
+          dataSource={locations}
+          columns={columns}
+          className="mt-5"
+          pagination={false}
+          rowKey="id"
+          onChange={handlerChange}
+        />
+      )}
     </div>
   );
 };
