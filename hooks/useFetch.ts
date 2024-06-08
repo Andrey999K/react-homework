@@ -1,16 +1,16 @@
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 
 interface FetchState {
-  data: any,
-  isLoading: boolean,
-  error: Error | null,
-  refetch: RefetchFunction
+  data: any;
+  isLoading: boolean;
+  error: Error | null;
+  refetch: RefetchFunction;
 }
 
 type RefetchParams = {
   params: {
-    [key: string]: string | number
-  }
+    [key: string]: string | number;
+  };
 };
 
 type RefetchFunction = (params: RefetchParams) => void;
@@ -22,7 +22,7 @@ export function useFetch(url: string): FetchState {
 
   const refetch = ({ params }: RefetchParams): void => {
     let newParams = {};
-    for (let field in params) {
+    for (const field in params) {
       newParams = { ...newParams, [field]: params[field].toString() };
     }
     url += "?" + new URLSearchParams(newParams).toString();
