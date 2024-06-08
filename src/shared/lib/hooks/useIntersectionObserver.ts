@@ -1,4 +1,4 @@
-import React, { SetStateAction, useCallback, useRef } from "react";
+import React, { useCallback, useRef } from "react";
 
 export const useIntersectionObserver = (
   loading: boolean,
