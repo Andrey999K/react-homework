@@ -10,11 +10,15 @@ export function useHover(): UseHoverInterface {
   const [hovered, setHovered] = useState(false);
   const handlerMouseHover = () => setHovered(prevState => !prevState);
   useEffect(() => {
-    if (ref) ref.current.addEventListener("mouseenter", handlerMouseHover);
-    if (ref) ref.current.addEventListener("mouseleave", handlerMouseHover);
+    if (ref.current)
+      ref.current.addEventListener("mouseenter", handlerMouseHover);
+    if (ref.current)
+      ref.current.addEventListener("mouseleave", handlerMouseHover);
     return () => {
-      if (ref) ref.current.removeEventListener("mouseenter", handlerMouseHover);
-      if (ref) ref.current.removeEventListener("mouseleave", handlerMouseHover);
+      if (ref.current)
+        ref.current.removeEventListener("mouseenter", handlerMouseHover);
+      if (ref.current)
+        ref.current.removeEventListener("mouseleave", handlerMouseHover);
     };
   }, []);
   return { hovered, ref };
