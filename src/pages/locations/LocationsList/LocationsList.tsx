@@ -7,6 +7,7 @@ import { useMemo } from "react";
 import { Link } from "react-router-dom";
 import { convertDataTime } from "../../../shared/utils/convertDataTime.ts";
 import { Loader } from "../../../shared/ui/Loader";
+import { routes } from "../../../app/AppRouter";
 
 export const LocationsList = () => {
   const { sortByCreated, handlerToggle } = useSort("ASC");
@@ -52,7 +53,7 @@ export const LocationsList = () => {
           );
         }
         return (
-          <Link to={`/locations/${id}`} className="w-full block">
+          <Link to={`/${routes.locations}/${id}`} className="w-full block">
             {name}
           </Link>
         );
@@ -67,7 +68,7 @@ export const LocationsList = () => {
       sortOrder: sortOrderCreated,
       sortDirections: ["ascend", "descend", "ascend"] as SortOrder[],
       render: (_: any, { id, created }: Location) => (
-        <Link to={`/locations/${id}`} className="w-full block">
+        <Link to={`/${routes.locations}/${id}`} className="w-full block">
           {convertDataTime(created)}
         </Link>
       )

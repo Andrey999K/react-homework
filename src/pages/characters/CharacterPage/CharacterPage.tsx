@@ -12,6 +12,29 @@ export const CharacterPage = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
 
+  const dataItems = (
+    <>
+      {character &&
+        Object.keys(character).map(field => {
+          if (field !== "image" && typeof character[field] === "string") {
+            if (field === "created") {
+              return (
+                <li key={field}>
+                  <b>{field}:</b>{" "}
+                  <span>{convertDataTime(character[field])}</span>
+                </li>
+              );
+            }
+            return (
+              <li key={field}>
+                <b>{field}:</b> <span>{character[field]}</span>
+              </li>
+            );
+          }
+        })}
+    </>
+  );
+
   useEffect(() => {
     setLoading(true);
     axios({
@@ -39,28 +62,9 @@ export const CharacterPage = () => {
       <Card hoverable styles={{ body: { padding: 0, overflow: "hidden" } }}>
         <Flex>
           <img alt={character.name} src={character.image} />
-
           <Flex vertical style={{ padding: 32 }}>
             <Typography.Title level={3}>{character.name}</Typography.Title>
-            <ul className="flex flex-col gap-2">
-              {Object.keys(character).map(field => {
-                if (field !== "image" && typeof character[field] === "string") {
-                  if (field === "created") {
-                    return (
-                      <li key={field}>
-                        <b>{field}:</b>{" "}
-                        <span>{convertDataTime(character[field])}</span>
-                      </li>
-                    );
-                  }
-                  return (
-                    <li key={field}>
-                      <b>{field}:</b> <span>{character[field]}</span>
-                    </li>
-                  );
-                }
-              })}
-            </ul>
+            <ul className="flex flex-col gap-2">{dataItems}</ul>
           </Flex>
         </Flex>
       </Card>

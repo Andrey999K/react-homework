@@ -7,6 +7,7 @@ import { Button, Table } from "antd";
 import { useMemo } from "react";
 import { SortOrder } from "antd/es/table/interface";
 import { Loader } from "../../../shared/ui/Loader";
+import { routes } from "../../../app/AppRouter";
 
 export const EpisodesList = () => {
   const { sortByCreated, handlerToggle } = useSort("ASC");
@@ -52,7 +53,7 @@ export const EpisodesList = () => {
           );
         }
         return (
-          <Link to={`/episodes/${id}`} className="w-full block">
+          <Link to={`/${routes.episodes}/${id}`} className="w-full block">
             {name}
           </Link>
         );
@@ -67,7 +68,7 @@ export const EpisodesList = () => {
       sortOrder: sortOrderCreated,
       sortDirections: ["ascend", "descend", "ascend"] as SortOrder[],
       render: (_: any, { id, created }: Episode) => (
-        <Link to={`/episodes/${id}`} className="w-full block">
+        <Link to={`/${routes.episodes}/${id}`} className="w-full block">
           {convertDataTime(created)}
         </Link>
       )

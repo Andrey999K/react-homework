@@ -7,6 +7,7 @@ import { Character, OnChangeTable } from "../../../shared/types";
 import { Button, Table } from "antd";
 import { SortOrder } from "antd/es/table/interface";
 import { Loader } from "../../../shared/ui/Loader";
+import { routes } from "../../../app/AppRouter";
 
 export const CharactersList: React.FC = () => {
   const { sortByCreated, handlerToggle } = useSort();
@@ -25,7 +26,7 @@ export const CharactersList: React.FC = () => {
     }
   }, [sortByCreated]);
 
-  const handlerChange: OnChangeTable<Character> = (
+  const handleChange: OnChangeTable<Character> = (
     _pagination,
     _filters,
     sorter
@@ -65,7 +66,7 @@ export const CharactersList: React.FC = () => {
           );
         }
         return (
-          <Link to={`/characters/${id}`} className="w-full block">
+          <Link to={`/${routes.characters}/${id}`} className="w-full block">
             {name}
           </Link>
         );
@@ -80,7 +81,7 @@ export const CharactersList: React.FC = () => {
       sortOrder: sortOrderCreated,
       sortDirections: ["ascend", "descend", "ascend"] as SortOrder[],
       render: (_: any, { id, created }: Character) => (
-        <Link to={`/characters/${id}`} className="w-full block">
+        <Link to={`/${routes.characters}/${id}`} className="w-full block">
           {convertDataTime(created)}
         </Link>
       )
@@ -100,7 +101,7 @@ export const CharactersList: React.FC = () => {
           className="mt-5"
           pagination={false}
           rowKey="id"
-          onChange={handlerChange}
+          onChange={handleChange}
         />
       )}
     </div>

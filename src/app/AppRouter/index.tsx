@@ -11,29 +11,36 @@ import { LocationsList } from "../../pages/locations/LocationsList/LocationsList
 import { LocationPage } from "../../pages/locations/LocationPage/LocationPage.lazy.tsx";
 import { Login } from "../../pages/Login/Login.lazy.tsx";
 
+export const routes = {
+  characters: "characters",
+  episodes: "episodes",
+  locations: "locations",
+  login: "login"
+};
+
 const AppRouter = () => {
   return (
     <Routes>
       <Route path="/" element={<MainLayout />}>
         <Route index element={<Home />} />
         <Route element={<PrivateRoute />}>
-          <Route path="characters">
+          <Route path={routes.characters}>
             <Route index element={<CharactersList />} />
             <Route path=":characterId" element={<CharacterPage />} />
             <Route path="*" element={<NotFound />} />
           </Route>
-          <Route path="episodes">
+          <Route path={routes.episodes}>
             <Route index element={<EpisodesList />} />
             <Route path=":episodeId" element={<EpisodePage />} />
             <Route path="*" element={<NotFound />} />
           </Route>
-          <Route path="locations">
+          <Route path={routes.locations}>
             <Route index element={<LocationsList />} />
             <Route path=":locationId" element={<LocationPage />} />
             <Route path="*" element={<NotFound />} />
           </Route>
         </Route>
-        <Route path="login" element={<Login />} />
+        <Route path={routes.login} element={<Login />} />
         <Route path="*" element={<NotFound />} />
       </Route>
     </Routes>

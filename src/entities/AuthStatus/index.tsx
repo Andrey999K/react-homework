@@ -6,7 +6,7 @@ const AuthStatus = () => {
   const auth = useAuth() as Required<AuthContextType>;
   const navigate = useNavigate();
 
-  const handlerSignOut = () => {
+  const handleSignOut = () => {
     auth.signOut(() => {
       navigate("/");
     });
@@ -18,7 +18,7 @@ const AuthStatus = () => {
   return (
     <div className="flex items-center gap-2">
       <span>Welcome user {auth.user.email}</span>
-      <Button type="primary" onClick={handlerSignOut}>
+      <Button type="primary" onClick={handleSignOut}>
         SignOut
       </Button>
     </div>

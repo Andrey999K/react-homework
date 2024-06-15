@@ -1,5 +1,6 @@
 import { NavLink } from "react-router-dom";
 import "./Navigation.scss";
+import { routes } from "../AppRouter";
 
 const Navigation = () => {
   const nav = [
@@ -10,17 +11,17 @@ const Navigation = () => {
     },
     {
       id: 2,
-      path: "/characters?sort=ASC",
+      path: `/${routes.characters}?sort=ASC`,
       text: "Герои"
     },
     {
       id: 3,
-      path: "/episodes?sort=ASC",
+      path: `/${routes.episodes}?sort=ASC`,
       text: "Эпизоды"
     },
     {
       id: 4,
-      path: "/locations?sort=ASC",
+      path: `/${routes.locations}?sort=ASC`,
       text: "Локации"
     }
   ];
